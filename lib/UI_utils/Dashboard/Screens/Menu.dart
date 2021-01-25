@@ -1,13 +1,11 @@
 import 'dart:ui';
 
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 class Menu extends StatefulWidget {
   @override
   _MenuState createState() => _MenuState();
