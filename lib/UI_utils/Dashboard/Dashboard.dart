@@ -37,7 +37,7 @@ class _DashboardState extends State<Dashboard> {
             centerTitle: true,
             leading: IconButton(
               icon: Icon(
-                Icons.menu,
+                Icons.emoji_food_beverage,
                 semanticLabel: 'menu',
               ),
               onPressed: () {},

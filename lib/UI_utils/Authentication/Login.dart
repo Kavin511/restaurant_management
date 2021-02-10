@@ -52,6 +52,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 12.0),
             CupertinoButton.filled(
               onPressed: () async {
+                AuthService().test().then((val) => {print(val)});
                 AuthService()
                     .login(phone_number.text.toString().trim(),
                         password_controller.text.toString().trim())
@@ -63,20 +64,20 @@ class _LoginPageState extends State<LoginPage> {
                                   .then((value) => {
                                         if (value.data['success'])
                                           {
-                                            saveLogin(val.data['msg']),
-                                            Get.toNamed('/dashboard'),
-                                            Fluttertoast.showToast(
-                                                msg: "Logged in successfully!",
-                                                toastLength: Toast.LENGTH_LONG,
-                                                gravity: ToastGravity.BOTTOM,
-                                                backgroundColor: Colors.grey,
-                                                textColor: Colors.white,
-                                                fontSize: 16.0)
-                                          }
-                                      })
-                              // Get.toNamed('/dashboard')
-                            }
-                        });
+                            saveLogin(val.data['msg']),
+                            Get.toNamed('/dashboard'),
+                            Fluttertoast.showToast(
+                                msg: "Logged in successfully!",
+                                toastLength: Toast.LENGTH_LONG,
+                                gravity: ToastGravity.BOTTOM,
+                                backgroundColor: Colors.grey,
+                                textColor: Colors.white,
+                                fontSize: 16.0)
+                          }
+                      })
+                      // Get.toNamed('/dashboard')
+                    }
+                });
               },
               child: Text('Login'),
             ),

@@ -1,17 +1,20 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 class AuthService {
   Dio dio = new Dio();
+  String base_URL = "https://restaurant-backend.herokuapp.com/restaurant";
+
+  // String base_URL="http://localhost:3000/";
   login(name, password) async {
     try {
-      return await dio.post(
-          "https://restaurant-backend.herokuapp.com/authentication",
-          data: {"name": name, "password": password},
+      return await dio.post(base_URL + "/login",
+          data: {"mobileNumber": name, "password": password},
           options: Options(contentType: Headers.formUrlEncodedContentType));
     } on DioError catch (e) {
       Fluttertoast.showToast(
-          msg: e.response.data['msg'],
+          msg: e.toString(),
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.grey,
@@ -20,14 +23,24 @@ class AuthService {
     }
   }
 
-  addNew(name, password) async {
+  test() async {
     try {
-      return await dio.post("https://restaurant-backend.herokuapp.com/adduser",
-          data: {"name": name, "password": password},
-          options: Options(contentType: Headers.formUrlEncodedContentType));
+      return await dio.post(base_URL);
+    } on DioError catch (e) {
+      print(e);
+    }
+  }
+
+  addNew(mobileNumber, password) async {
+    try {
+      return await dio.post(base_URL + "/register", data: {
+        "mobileNumber": mobileNumber,
+        "password": password,
+        "email": mobileNumber
+      });
     } on DioError catch (e) {
       Fluttertoast.showToast(
-          msg: e.response.data['msg'].toString(),
+          msg: e.toString(),
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.grey,
@@ -39,7 +52,7 @@ class AuthService {
   getInfo(tokens) async {
     try {
       dio.options.headers['Authorization'] = 'Bearer $tokens';
-      return await dio.get("https://restaurant-backend.herokuapp.com/getinfo");
+      return await dio.get(base_URL + "/getInfo");
     } on DioError catch (e) {
       Fluttertoast.showToast(
           msg: e.response.data['msg'].toString(),
