@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/UI_utils/Dashboard/Screens/Account.dart';
-import 'package:restaurant_app/UI_utils/Dashboard/Screens/Home.dart';
-import 'package:restaurant_app/UI_utils/Dashboard/Screens/Orders.dart';
+import 'package:restaurant_app/UI/Dashboard/Screens/Account.dart';
+import 'package:restaurant_app/UI/Dashboard/Screens/Home.dart';
+import 'package:restaurant_app/UI/Dashboard/Screens/Orders.dart';
 
 class Dashboard extends StatefulWidget {
   @override

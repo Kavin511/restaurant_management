@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:restaurant_app/Services/AuthServices/Authservice.dart';
+import 'file:///D:/C%20files/AndroidStudioProjects/restaurant_app/lib/Services/Auth/Authservice.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -70,7 +70,7 @@ class _SignUpState extends State<SignUp> {
                     .then((val) => {
                           if (val.data['success'])
                             {
-                              // Get.toNamed('/dashboard');
+                              Get.toNamed('/dashboard'),
                               Fluttertoast.showToast(
                                   msg: val.data['msg'].toString(),
                                   toastLength: Toast.LENGTH_LONG,

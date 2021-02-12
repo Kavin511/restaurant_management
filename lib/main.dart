@@ -7,10 +7,10 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'UI_utils/Authentication/Login.dart';
-import 'UI_utils/Authentication/SignUp.dart';
-import 'UI_utils/Dashboard/Dashboard.dart';
-import 'UI_utils/Dashboard/Screens/Menu.dart';
+import 'UI/Authentication/Login.dart';
+import 'UI/Authentication/SignUp.dart';
+import 'UI/Dashboard/Dashboard.dart';
+import 'UI/Dashboard/Screens/Menu.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

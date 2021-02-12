@@ -12,7 +12,6 @@ class Home extends StatefulWidget {
 
 class FadeRouteBuilder<T> extends PageRouteBuilder<T> {
   final Widget page;
-
   FadeRouteBuilder({@required this.page})
       : super(
           pageBuilder: (context, animation1, animation2) => page,
@@ -35,7 +34,7 @@ class _HomeState extends State<Home> {
     // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
     //   setState(() {
     //     rect = rect.inflate(1.3 * MediaQuery.of(context).size.longestSide);
-    //     Future.delayed(animationDuration + delay, _goToNextPage);
+    //     Future.delayed(animationDuration + delay, Get.toNamed('/menu'));
     //   });
     // });
     Get.toNamed(
