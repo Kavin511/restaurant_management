@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 class Account extends StatefulWidget {
@@ -56,11 +58,31 @@ class _AccountState extends State<Account> {
                     ))
               ],
             ),
-            RichText(
-                text: TextSpan(
-                    text: 'Mobile number',
-                    style: DefaultTextStyle.of(context).style),
-                softWrap: true)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: RichText(
+                  text: TextSpan(
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Container(
+                                    width: 100,
+                                    color: Colors.blue,
+                                    child: Padding(
+                                        padding: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                    .viewInsets
+                                                    .bottom +
+                                                10),
+                                        child: TextField()));
+                              });
+                        },
+                      text: 'Mobile number',
+                      style: DefaultTextStyle.of(context).style),
+                  softWrap: true),
+            )
           ],
         ),
       ),
