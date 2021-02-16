@@ -1,15 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
-// import 'package:get/get_connect/connect.dart';
 
 class AuthService {
   Dio dio = new Dio();
-
-  // GetConnect
   String base_URL = "https://restaurant-backend.herokuapp.com/restaurant";
-
   login(name, password) async {
     try {
       return await dio.post(base_URL + "/login",
@@ -25,6 +20,7 @@ class AuthService {
           fontSize: 16.0);
     }
   }
+
   test() async {
     try {
       return await dio.post(base_URL);
@@ -32,6 +28,7 @@ class AuthService {
       print(e);
     }
   }
+
   addNew(mobileNumber, password) async {
     try {
       return await dio.post(base_URL + "/register", data: {

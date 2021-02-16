@@ -11,6 +11,7 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   int _pageIndex = 0;
+  String text = "Restaurant";
   List<Widget> tabList = [Home(), Orders(), Account()];
   PageController _pageController;
 
@@ -30,18 +31,16 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    Widget actionBarText() {
+      return new Text(text);
+    }
+
     setState(() {});
     return Scaffold(
         appBar: AppBar(
-            title: Text("Restaurant"),
-            centerTitle: true,
-            leading: IconButton(
-              icon: Icon(
-                Icons.emoji_food_beverage,
-                semanticLabel: 'menu',
-              ),
-              onPressed: () {},
-            )),
+          title: actionBarText(),
+          centerTitle: true,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: (index) => {
             this._pageController.animateToPage(index,
@@ -50,7 +49,7 @@ class _DashboardState extends State<Dashboard> {
           },
           currentIndex: _pageIndex,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Menu'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.format_list_bulleted_outlined),
                 label: "Orders"),
@@ -70,6 +69,7 @@ class _DashboardState extends State<Dashboard> {
   void onPageChange(int value) {
     setState(() {
       this._pageIndex = value;
+      this.text = value == 0 ? "Menu" : (value == 1 ? "Orders" : "Profile");
     });
   }
 }

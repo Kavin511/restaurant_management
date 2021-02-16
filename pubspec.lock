@@ -222,6 +222,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  image_form_field:
+    dependency: "direct main"
+    description:
+      name: image_form_field
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   image_picker:
     dependency: "direct main"
     description:
@@ -262,6 +269,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.2"
+  jwt_decoder:
+    dependency: "direct main"
+    description:
+      name: jwt_decoder
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   localstorage:
     dependency: "direct main"
     description:

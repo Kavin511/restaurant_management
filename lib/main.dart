@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'UI/Dashboard/Screens/ProfileCompletion.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'UI/Authentication/Login.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
     GetPage(name: '/', page: () => LoginPage()),
     GetPage(name: '/signUp', page: () => SignUp()),
     GetPage(name: '/dashboard', page: () => Dashboard()),
-    GetPage(name: '/menu', page: () => Menu(), curve: Curves.bounceIn),
+    GetPage(name: '/profileComplete', page: () => ProfileCompletion()),
+    GetPage(name: '/menu', page: () => Menu(), curve: Curves.fastOutSlowIn),
   ];
   final token;
 

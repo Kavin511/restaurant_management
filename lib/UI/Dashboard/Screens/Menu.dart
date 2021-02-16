@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -33,17 +34,18 @@ class _MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: Icon(Icons.chevron_left_sharp),
-              onPressed: () {
-                Get.back(
-                  closeOverlays: true,
-                );
-              },
-            ),
-            centerTitle: true,
-            title: Text('Menu item'),
+          backgroundColor: Colors.blue,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.chevron_left_sharp),
+          onPressed: () {
+            Get.back(
+              closeOverlays: true,
+            );
+          },
+        ),
+        centerTitle: true,
+        title: Text('Menu item'),
             actions: [],
           ),
           body: SingleChildScrollView(
