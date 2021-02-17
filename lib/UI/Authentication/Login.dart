@@ -14,7 +14,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final phone_number = TextEditingController();
   final password_controller = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

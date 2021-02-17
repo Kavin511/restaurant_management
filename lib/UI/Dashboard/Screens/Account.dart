@@ -21,7 +21,6 @@ class _AccountState extends State<Account> {
       '/profileComplete',
     );
   }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -72,10 +71,10 @@ class _AccountState extends State<Account> {
                                     color: Colors.blue,
                                     child: Padding(
                                         padding: EdgeInsets.only(
-                                            bottom: MediaQuery.of(context)
-                                                    .viewInsets
-                                                    .bottom +
-                                                10),
+                                            bottom: MediaQuery
+                                                .of(context)
+                                                .viewInsets
+                                                .bottom),
                                         child: TextField()));
                               });
                         },
