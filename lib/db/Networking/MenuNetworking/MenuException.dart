@@ -1,7 +1,6 @@
 class MenuException implements Exception {
   final _message;
   final _prefix;
-
   MenuException([
     this._message,
     this._prefix

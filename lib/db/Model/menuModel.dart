@@ -1,14 +1,11 @@
 class Menu {
-  String mobileNumber;
   String foodName;
   String foodDesc;
   String category;
   String price;
   String foodType;
   String availability;
-
   Menu({
-    this.mobileNumber,
     this.foodName,
     this.foodDesc,
     this.category,
@@ -17,8 +14,7 @@ class Menu {
     this.availability,
   });
 
-  Menu.fromJson(Map<String, dynamic>json){
-    mobileNumber = json['mobileNumber'];
+  Menu.fromJson(Map<String, dynamic> json) {
     foodName = json['foodName'];
     foodDesc = json['foodDesc'];
     category = json['category'];
@@ -29,6 +25,16 @@ class Menu {
 }
 
 class MenuResponse {
-  List<Menu> results;
+  List<Menu> menu;
 
+  MenuResponse({this.menu});
+
+  MenuResponse.fromJson(Map<String, dynamic> json) {
+    if (json['result'] != null) {
+      menu = new List<Menu>();
+      json['result']['foodItems'].forEach((v) {
+        menu.add(new Menu.fromJson(v));
+      });
+    }
+  }
 }

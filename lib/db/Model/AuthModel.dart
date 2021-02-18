@@ -1,2 +1,1 @@
-class Auth {
-}
+class Auth {}

@@ -5,13 +5,13 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'UI/Dashboard/Screens/ProfileCompletion.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'UI/Authentication/Login.dart';
 import 'UI/Authentication/SignUp.dart';
 import 'UI/Dashboard/Dashboard.dart';
-import 'UI/Dashboard/Screens/Menu.dart';
+import 'UI/Dashboard/Screens/Menu/Menu.dart';
+import 'UI/Dashboard/Screens/ProfileCompletion.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
