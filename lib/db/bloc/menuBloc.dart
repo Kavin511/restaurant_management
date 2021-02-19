@@ -10,9 +10,12 @@ class MenuBloc {
 
   StreamSink<MenuApiResponse<List<Menu>>> get menuListSink => _controller.sink;
 
-  MenuBloc() {
+  Stream<MenuApiResponse<List<Menu>>> get menuListStream => _controller.stream;
+
+  MenuBloc(String mobileNumber) {
     _controller = StreamController<MenuApiResponse<List<Menu>>>();
-    fetchMenu("");
+    _menuRepository = MenuRepository();
+    fetchMenu(mobileNumber);
   }
 
   fetchMenu(String mobileNumber) async {
@@ -21,8 +24,12 @@ class MenuBloc {
       List<Menu> menuList = await _menuRepository.getMenu(mobileNumber);
       menuListSink.add(MenuApiResponse.completed(menuList));
     } catch (e) {
-      menuListSink.add(MenuApiResponse.error('Error occured'));
+      menuListSink.add(MenuApiResponse.error('Error occurred'));
       print(e);
     }
+  }
+
+  dispose() {
+    _controller?.close();
   }
 }

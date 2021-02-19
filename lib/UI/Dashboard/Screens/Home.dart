@@ -4,6 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rect_getter/rect_getter.dart';
+import 'package:restaurant_app/db/Model/menuModel.dart';
+import 'package:restaurant_app/db/Networking/MenuNetworking/MenuResponse.dart';
+import 'package:restaurant_app/db/Repository/MenuRepository.dart';
+import 'package:restaurant_app/db/bloc/menuBloc.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,6 +16,7 @@ class Home extends StatefulWidget {
 
 class FadeRouteBuilder<T> extends PageRouteBuilder<T> {
   final Widget page;
+
   FadeRouteBuilder({@required this.page})
       : super(
           pageBuilder: (context, animation1, animation2) => page,
@@ -26,23 +31,22 @@ class _HomeState extends State<Home> {
   Rect rect;
   final Duration animationDuration = Duration(milliseconds: 300);
   final Duration delay = Duration(milliseconds: 300);
+  MenuRepository menuRepository = new MenuRepository();
+  MenuBloc menuBloc;
+  String mobileNumber = "123457";
+  Menu menu = new Menu();
 
   void onTap() {
-    // setState(() {
-    //   rect = RectGetter.getRectFromKey(rectGetterKey);
-    // });
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   setState(() {
-    //     rect = rect.inflate(1.3 * MediaQuery.of(context).size.longestSide);
-    //     Future.delayed(animationDuration + delay, Get.toNamed('/menu'));
-    //   });
-    // });
     Get.toNamed(
       '/menu',
     );
   }
 
-  // void _goToNextPage() {
+  @override
+  void initState() {
+    super.initState();
+    menuBloc = MenuBloc(mobileNumber);
+  } // void _goToNextPage() {
   //   Navigator.of(context)
   //       .push(FadeRouteBuilder(page: Menu()))
   //       .then((value) => setState(() => rect == null));
@@ -69,41 +73,55 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: RectGetter(
-          key: rectGetterKey,
-          child: FloatingActionButton(
-            onPressed: onTap,
-            child: Icon(
-              Icons.restaurant_menu,
-              semanticLabel: "Add menu item",
-            ),
-          ),
-        ),
-        body: Center(
-          child: RichText(
-            text: TextSpan(children: [
-              TextSpan(
-                  text: 'No menu items to display\nClick',
-                  style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
-              WidgetSpan(
-                  child: Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                child: Icon(
-                  Icons.restaurant_menu,
-                  color: Colors.lightBlue,
-                ),
-              )),
-              TextSpan(
-                  text: 'to add menu item',
-                  style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold))
-            ]),
-          ),
-        ));
+      body: RefreshIndicator(
+        onRefresh: () {
+          return menuBloc.fetchMenu(mobileNumber);
+        },
+        child: StreamBuilder<MenuApiResponse>(
+            stream: menuBloc.menuListStream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                switch (snapshot.data.status) {
+                  case Status.LOADING:
+                    print('loading');
+                    return new Container(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                    break;
+                  case Status.COMPLETED:
+                    return new MenuList(
+                      menuData: snapshot.data.data,
+                    );
+                    break;
+                  case Status.ERROR:
+                    print('error');
+                    return new Container(
+                      child: Center(
+                        child: Text('Network error'),
+                      ),
+                    );
+                    break;
+                }
+              }
+              return Container();
+            }),
+      ),
+    );
+  }
+}
+
+class MenuList extends StatelessWidget {
+  final List<Menu> menuData;
+
+  const MenuList({Key key, this.menuData}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    print(menuData[0]);
+    return Container(
+      child: Center(child: Text(menuData[0].foodName)),
+    );
   }
 }
