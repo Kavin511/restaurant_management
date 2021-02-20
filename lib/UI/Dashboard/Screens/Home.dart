@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:rect_getter/rect_getter.dart';
 import 'package:restaurant_app/db/Model/menuModel.dart';
@@ -112,16 +113,43 @@ class _HomeState extends State<Home> {
   }
 }
 
-class MenuList extends StatelessWidget {
+class MenuList extends StatefulWidget {
   final List<Menu> menuData;
 
   const MenuList({Key key, this.menuData}) : super(key: key);
 
   @override
+  _MenuListState createState() => _MenuListState();
+}
+
+class _MenuListState extends State<MenuList> {
+  @override
   Widget build(BuildContext context) {
-    print(menuData[0]);
     return Container(
-      child: Center(child: Text(menuData[0].foodName)),
+        child: ListView.builder(
+            itemCount: widget.menuData.length,
+            itemBuilder: (context, index) => MenuCard(widget.menuData[index])));
+  }
+}
+
+class MenuCard extends StatelessWidget {
+  Menu menuData;
+
+  MenuCard(this.menuData);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(menuData.foodName),
+      subtitle: Text(menuData.foodDesc),
+      leading: CircleAvatar(
+        child: Image.asset(
+          'images/cover.jpg',
+          fit: BoxFit.cover,
+          width: 150,
+          height: 150,
+        ),
+      ),
     );
   }
 }
