@@ -6,6 +6,6 @@ class jwtDecoder {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String yourToken = prefs.getString('token');
     Map<String, dynamic> decodedToken = JwtDecoder.decode(yourToken);
-    print(decodedToken);
+    return decodedToken['mobileNumber'];
   }
 }

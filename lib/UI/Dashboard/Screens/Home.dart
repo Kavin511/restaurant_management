@@ -26,6 +26,11 @@ class FadeRouteBuilder<T> extends PageRouteBuilder<T> {
           },
         );
 }
+void onTap() {
+  Get.toNamed(
+    '/menu',
+  );
+}
 
 class _HomeState extends State<Home> {
   GlobalKey rectGetterKey = RectGetter.createGlobalKey();
@@ -36,12 +41,6 @@ class _HomeState extends State<Home> {
   MenuBloc menuBloc;
   String mobileNumber = "123457";
   Menu menu = new Menu();
-
-  void onTap() {
-    Get.toNamed(
-      '/menu',
-    );
-  }
 
   @override
   void initState() {
@@ -123,10 +122,22 @@ class MenuList extends StatefulWidget {
 }
 
 class _MenuListState extends State<MenuList> {
+  GlobalKey rectGetterKey = RectGetter.createGlobalKey();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: ListView.builder(
+    return Scaffold(
+        floatingActionButton: RectGetter(
+          key: rectGetterKey,
+          child: FloatingActionButton(
+            onPressed: onTap,
+            child: Icon(
+              Icons.restaurant_menu,
+              semanticLabel: "Add menu item",
+            ),
+          ),
+        ),
+        body: ListView.builder(
             itemCount: widget.menuData.length,
             itemBuilder: (context, index) => MenuCard(widget.menuData[index])));
   }
@@ -144,10 +155,10 @@ class MenuCard extends StatelessWidget {
       subtitle: Text(menuData.foodDesc),
       leading: CircleAvatar(
         child: Image.asset(
-          'images/cover.jpg',
+          'images/food.jpg',
           fit: BoxFit.cover,
-          width: 150,
-          height: 150,
+          width: 100,
+          height: 100,
         ),
       ),
     );
