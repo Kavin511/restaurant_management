@@ -34,7 +34,6 @@ class _MenuTileState extends State<MenuTile> {
     menuService = MenuService();
     menuBloc = MenuBloc();
   }
-
   @override
   Widget build(BuildContext context) {
     final button = new PopupMenuButton(

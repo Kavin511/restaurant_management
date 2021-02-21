@@ -57,27 +57,27 @@ class _LoginPageState extends State<LoginPage> {
                     .login(phone_number.text.toString().trim(),
                         password_controller.text.toString().trim())
                     .then((val) => {
-                          if (val.data['success'])
-                            {
-                              AuthService()
-                                  .getInfo(val.data['msg'])
-                                  .then((value) => {
-                                        if (value.data['success'])
-                                          {
-                                            saveLogin(val.data['msg']),
-                                            Get.toNamed('/dashboard'),
-                                            // Fluttertoast.showToast(
-                                            //     msg: "Logged in successfully!",
-                                            //     toastLength: Toast.LENGTH_LONG,
-                                            //     gravity: ToastGravity.BOTTOM,
+                          // if (val.data['success'])
+                          //   {
+                          AuthService()
+                              .getInfo(val.data['msg'])
+                              .then((value) => {
+                                    if (value.data['success'])
+                                      {
+                                        saveLogin(val.data['msg']),
+                                        Get.toNamed('/dashboard'),
+                                        // Fluttertoast.showToast(
+                                        //     msg: "Logged in successfully!",
+                                        //     toastLength: Toast.LENGTH_LONG,
+                                        //     gravity: ToastGravity.BOTTOM,
                                             //     backgroundColor: Colors.grey,
                                             //     textColor: Colors.white,
                                             //     fontSize: 16.0)
                                           }
                                       })
-                      // Get.toNamed('/dashboard')
-                    }
-                });
+                  // Get.toNamed('/dashboard')
+                          // }
+                        });
               },
               child: Text('Login'),
             ),
