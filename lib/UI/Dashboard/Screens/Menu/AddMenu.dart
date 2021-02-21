@@ -103,13 +103,13 @@ class _MenuState extends State<AddMenu> {
                           fillColor: const Color(0xFFf8f8f8),
                           focusedBorder: new OutlineInputBorder(
                             borderSide:
-                                new BorderSide(color: Colors.blue, width: 2.0),
+                            new BorderSide(color: Colors.blue, width: 2.0),
                           ),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(6)),
-                          prefixIcon: Icon(Icons.fastfood_rounded)),
-                          cursorRadius: Radius.circular(100),
-                          autocorrect: true,
+                          prefixIcon: Icon(Icons.fastfood)),
+                      cursorRadius: Radius.circular(100),
+                      autocorrect: true,
                         ),
                       ),
                       Padding(
@@ -151,17 +151,17 @@ class _MenuState extends State<AddMenu> {
                       inputFormatters: [
                         DecimalTextInputFormatter(decimalRange: 2)
                       ],
-                      controller: foodPriceController,
-                      decoration: InputDecoration(
-                          hintText: "Food price",
-                          labelText: 'Food price ₹',
-                          filled: true,
-                          fillColor: const Color(0xFFf8f8f8),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6)),
-                          prefixIcon: Icon(Icons.money)),
-                      cursorRadius: Radius.circular(100),
-                      autocorrect: true,
+                          controller: foodPriceController,
+                          decoration: InputDecoration(
+                              hintText: "Food price",
+                              labelText: 'Food price ₹',
+                              filled: true,
+                              fillColor: const Color(0xFFf8f8f8),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(6)),
+                              prefixIcon: Icon(Icons.attach_money)),
+                          cursorRadius: Radius.circular(100),
+                          autocorrect: true,
                     ),
                       ),
                       Padding(
@@ -221,7 +221,7 @@ class _MenuState extends State<AddMenu> {
                               fillColor: const Color(0xFFf8f8f8),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(6))),
-                          icon: Icon(Icons.arrow_drop_down_circle_outlined),
+                          icon: Icon(Icons.keyboard_arrow_down),
                           hint: dropDownValue == -1
                               ? Text('Select food category')
                               : Text(foodList[dropDownValue]),
@@ -234,7 +234,7 @@ class _MenuState extends State<AddMenu> {
                           },
                           items: foodList.map((val) {
                             return DropdownMenuItem(
-                              onTap: () => {category = val},
+                              // onTap: () => {category = val},
                               child: Text(val),
                               value: val,
                             );
@@ -243,16 +243,10 @@ class _MenuState extends State<AddMenu> {
                       ),
                       Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: ElevatedButton(
+                          child: MaterialButton(
                             child: Text('Add Food'),
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.all(15),
-                          onPrimary: Colors.white,
-                          shadowColor: Colors.blueAccent,
-                          elevation: 7,
-                        ),
-                        onPressed: validateFoods,
-                      )),
+                            onPressed: validateFoods,
+                          )),
                       isLoading
                       ? Center(
                           child: SizedBox(

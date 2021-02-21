@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MenuDescTile extends StatelessWidget {
@@ -68,21 +69,22 @@ class MenuDescTile extends StatelessWidget {
                   text: TextSpan(
                       style: TextStyle(fontSize: 14, color: Colors.black54),
                       children: [
-                    TextSpan(
-                        text: availabiliy == "true"
-                            ? "Available now"
-                            : "Not available currently"),
-                    WidgetSpan(
-                        child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0, top: 5),
-                      child: Icon(
-                        Icons.circle,
-                        color:
-                            availabiliy == "true" ? Colors.green : Colors.red,
-                        size: 15,
-                      ),
-                    ))
-                  ]))
+                        TextSpan(
+                            text: availabiliy == "true"
+                                ? "Available now"
+                                : "Not available currently"),
+                        WidgetSpan(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8.0, top: 5),
+                              child: Icon(
+                                CupertinoIcons.circle_filled,
+                                color:
+                                availabiliy == "true" ? Colors.green : Colors
+                                    .red,
+                                size: 15,
+                              ),
+                            ))
+                      ]))
             ],
           ),
         ),

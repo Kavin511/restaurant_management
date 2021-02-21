@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:restaurant_app/Services/Auth/Authservice.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'file:///D:/C%20files/AndroidStudioProjects/restaurant_app/lib/Services/Auth/Authservice.dart';
-
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();

@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/UI/Dashboard/Screens/Orders.dart';
 
-import 'file:///D:/C%20files/AndroidStudioProjects/restaurant_app/lib/UI/Dashboard/Screens/Menu/Home.dart';
-import 'file:///D:/C%20files/AndroidStudioProjects/restaurant_app/lib/UI/Dashboard/Screens/Profile/Account.dart';
+import 'Screens/Menu/Home.dart';
+import 'Screens/Profile/Account.dart';
+
 
 class Dashboard extends StatefulWidget {
   @override
@@ -50,12 +51,13 @@ class _DashboardState extends State<Dashboard> {
           },
           currentIndex: _pageIndex,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Menu'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.format_list_bulleted_outlined),
-                label: "Orders"),
+                icon: Icon(Icons.home), title: Text('Menu')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.supervisor_account), label: 'Account')
+                icon: Icon(Icons.format_list_bulleted),
+                title: Text('Orders')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.supervisor_account), title: Text('Account'))
           ],
         ),
         body: PageView(
