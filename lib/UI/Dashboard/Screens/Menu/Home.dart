@@ -9,6 +9,9 @@ import 'package:restaurant_app/db/Model/menuModel.dart';
 import 'package:restaurant_app/db/Networking/MenuNetworking/MenuResponse.dart';
 import 'package:restaurant_app/db/Repository/MenuRepository.dart';
 import 'package:restaurant_app/db/bloc/menuBloc.dart';
+import 'package:restaurant_app/jwtDecoder/jwtDecoder.dart';
+
+import 'MenuList.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -26,6 +29,7 @@ class FadeRouteBuilder<T> extends PageRouteBuilder<T> {
           },
         );
 }
+
 void onTap() {
   Get.toNamed(
     '/menu',
@@ -39,43 +43,34 @@ class _HomeState extends State<Home> {
   final Duration delay = Duration(milliseconds: 300);
   MenuRepository menuRepository = new MenuRepository();
   MenuBloc menuBloc;
-  String mobileNumber = "123457";
+  String mobileNumber = '';
+  jwtDecoder jwt;
   Menu menu = new Menu();
 
   @override
   void initState() {
     super.initState();
-    menuBloc = MenuBloc(mobileNumber);
-  } // void _goToNextPage() {
-  //   Navigator.of(context)
-  //       .push(FadeRouteBuilder(page: Menu()))
-  //       .then((value) => setState(() => rect == null));
-  // }
+    jwt = jwtDecoder();
+    menuBloc = MenuBloc();
+  }
 
-  // Widget _ripple() {
-  //   if (rect == null) {
-  //     return Container();
-  //   }
-  //   return AnimatedPositioned(
-  //     duration: animationDuration,
-  //     left: rect.left,
-  //     right: MediaQuery.of(context).size.width - rect.right,
-  //     top: rect.top,
-  //     bottom: MediaQuery.of(context).size.height - rect.bottom,
-  //     child: Container(
-  //       decoration: BoxDecoration(
-  //         shape: BoxShape.circle,
-  //         color: Colors.blueAccent,
-  //       ),
-  //     ),
-  //   );
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: RectGetter(
+        key: rectGetterKey,
+        child: FloatingActionButton(
+          onPressed: onTap,
+          child: Icon(
+            Icons.restaurant_menu,
+            semanticLabel: "Add menu item",
+          ),
+        ),
+      ),
       body: RefreshIndicator(
+        color: Colors.green,
         onRefresh: () {
-          return menuBloc.fetchMenu(mobileNumber);
+          return menuBloc.fetchMenu();
         },
         child: StreamBuilder<MenuApiResponse>(
             stream: menuBloc.menuListStream,
@@ -91,75 +86,22 @@ class _HomeState extends State<Home> {
                     );
                     break;
                   case Status.COMPLETED:
+                    print('completed');
                     return new MenuList(
                       menuData: snapshot.data.data,
                     );
                     break;
                   case Status.ERROR:
-                    print('error');
+                    print('error do');
                     return new Container(
                       child: Center(
-                        child: Text('Network error'),
-                      ),
+                          child: Text('No menu items found Add new Items...')),
                     );
                     break;
                 }
               }
               return Container();
             }),
-      ),
-    );
-  }
-}
-
-class MenuList extends StatefulWidget {
-  final List<Menu> menuData;
-
-  const MenuList({Key key, this.menuData}) : super(key: key);
-
-  @override
-  _MenuListState createState() => _MenuListState();
-}
-
-class _MenuListState extends State<MenuList> {
-  GlobalKey rectGetterKey = RectGetter.createGlobalKey();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButton: RectGetter(
-          key: rectGetterKey,
-          child: FloatingActionButton(
-            onPressed: onTap,
-            child: Icon(
-              Icons.restaurant_menu,
-              semanticLabel: "Add menu item",
-            ),
-          ),
-        ),
-        body: ListView.builder(
-            itemCount: widget.menuData.length,
-            itemBuilder: (context, index) => MenuCard(widget.menuData[index])));
-  }
-}
-
-class MenuCard extends StatelessWidget {
-  Menu menuData;
-
-  MenuCard(this.menuData);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(menuData.foodName),
-      subtitle: Text(menuData.foodDesc),
-      leading: CircleAvatar(
-        child: Image.asset(
-          'images/food.jpg',
-          fit: BoxFit.cover,
-          width: 100,
-          height: 100,
-        ),
       ),
     );
   }

@@ -26,7 +26,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^3.11.1
   google_fonts: ^0.2.0
-  fluttertoast:
   dio:
   shared_preferences: ^0.5.12+4
   rect_getter: ^0.0.1

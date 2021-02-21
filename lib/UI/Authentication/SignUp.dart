@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+
 import 'file:///D:/C%20files/AndroidStudioProjects/restaurant_app/lib/Services/Auth/Authservice.dart';
 
 class SignUp extends StatefulWidget {
@@ -71,13 +72,13 @@ class _SignUpState extends State<SignUp> {
                           if (val.data['success'])
                             {
                               Get.toNamed('/dashboard'),
-                              Fluttertoast.showToast(
-                                  msg: val.data['msg'].toString(),
-                                  toastLength: Toast.LENGTH_LONG,
-                                  gravity: ToastGravity.BOTTOM,
-                                  backgroundColor: Colors.grey,
-                                  textColor: Colors.white,
-                                  fontSize: 16.0)
+                              // Fluttertoast.showToast(
+                              //     msg: val.data['msg'].toString(),
+                              //     toastLength: Toast.LENGTH_LONG,
+                              //     gravity: ToastGravity.BOTTOM,
+                              //     backgroundColor: Colors.grey,
+                              //     textColor: Colors.white,
+                              //     fontSize: 16.0)
                             }
                         });
               },

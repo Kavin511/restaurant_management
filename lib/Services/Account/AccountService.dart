@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 
 class AccountService {
   Dio dio = new Dio();
@@ -10,7 +10,7 @@ class AccountService {
       return await dio.get(base_URL + "/getProfile/" + mobileNumber,
           options: Options(contentType: Headers.formUrlEncodedContentType));
     } on DioError catch (e) {
-      Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
+      // Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
     }
   }
 
@@ -20,7 +20,7 @@ class AccountService {
           data: {"hotelName": hotelName},
           options: Options(contentType: Headers.formUrlEncodedContentType));
     } on DioError catch (e) {
-      Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
+      // Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
     }
   }
 
@@ -30,7 +30,7 @@ class AccountService {
           data: {"hotelName": hotelName},
           options: Options(contentType: Headers.formUrlEncodedContentType));
     } on DioError catch (e) {
-      Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
+      // Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
     }
   }
 
@@ -40,7 +40,7 @@ class AccountService {
           data: {"hotelName": hotelName},
           options: Options(contentType: Headers.formUrlEncodedContentType));
     } on DioError catch (e) {
-      Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
+      // Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
     }
   }
 }

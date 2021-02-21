@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:restaurant_app/db/Model/menuModel.dart';
 import 'package:restaurant_app/db/Networking/MenuNetworking/MenuResponse.dart';
 import 'package:restaurant_app/db/Repository/MenuRepository.dart';
+import 'package:restaurant_app/jwtDecoder/jwtDecoder.dart';
 
 class MenuBloc {
   MenuRepository _menuRepository;
@@ -12,13 +13,15 @@ class MenuBloc {
 
   Stream<MenuApiResponse<List<Menu>>> get menuListStream => _controller.stream;
 
-  MenuBloc(String mobileNumber) {
+  MenuBloc() {
     _controller = StreamController<MenuApiResponse<List<Menu>>>();
     _menuRepository = MenuRepository();
-    fetchMenu(mobileNumber);
+    fetchMenu();
   }
 
-  fetchMenu(String mobileNumber) async {
+  fetchMenu() async {
+    jwtDecoder jwt = jwtDecoder();
+    var mobileNumber = await jwt.decode();
     menuListSink.add(MenuApiResponse.loading('Getting menu available'));
     try {
       List<Menu> menuList = await _menuRepository.getMenu(mobileNumber);

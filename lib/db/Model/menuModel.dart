@@ -36,9 +36,10 @@ class MenuResponse {
   List<Menu> menu;
   MenuResponse({this.menu});
   MenuResponse.fromJson(Map<String, dynamic> json) {
-    if (json['result'][0]['foodItems'] != null) {
+    print(json['result']['foodItems']);
+    if (json['result']['foodItems'] != null) {
       menu = new List<Menu>();
-      json['result'][0]['foodItems'].forEach((v) {
+      json['result']['foodItems'].forEach((v) {
         menu.add(Menu.fromJson(v));
       });
     }

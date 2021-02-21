@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -64,17 +64,17 @@ class _LoginPageState extends State<LoginPage> {
                                   .then((value) => {
                                         if (value.data['success'])
                                           {
-                            saveLogin(val.data['msg']),
-                            Get.toNamed('/dashboard'),
-                            Fluttertoast.showToast(
-                                msg: "Logged in successfully!",
-                                toastLength: Toast.LENGTH_LONG,
-                                gravity: ToastGravity.BOTTOM,
-                                backgroundColor: Colors.grey,
-                                textColor: Colors.white,
-                                fontSize: 16.0)
-                          }
-                      })
+                                            saveLogin(val.data['msg']),
+                                            Get.toNamed('/dashboard'),
+                                            // Fluttertoast.showToast(
+                                            //     msg: "Logged in successfully!",
+                                            //     toastLength: Toast.LENGTH_LONG,
+                                            //     gravity: ToastGravity.BOTTOM,
+                                            //     backgroundColor: Colors.grey,
+                                            //     textColor: Colors.white,
+                                            //     fontSize: 16.0)
+                                          }
+                                      })
                       // Get.toNamed('/dashboard')
                     }
                 });

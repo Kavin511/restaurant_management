@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'UI/Authentication/Login.dart';
 import 'UI/Authentication/SignUp.dart';
 import 'UI/Dashboard/Dashboard.dart';
-import 'UI/Dashboard/Screens/Menu/Menu.dart';
+import 'UI/Dashboard/Screens/Menu/AddMenu.dart';
 import 'UI/Dashboard/Screens/ProfileCompletion.dart';
 
 Future<void> main() async {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     GetPage(name: '/signUp', page: () => SignUp()),
     GetPage(name: '/dashboard', page: () => Dashboard()),
     GetPage(name: '/profileComplete', page: () => ProfileCompletion()),
-    GetPage(name: '/menu', page: () => Menu(), curve: Curves.fastOutSlowIn),
+    GetPage(name: '/menu', page: () => AddMenu(), curve: Curves.fastOutSlowIn),
   ];
   final token;
 
