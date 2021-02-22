@@ -21,7 +21,9 @@ class AccountService {
     }
   }
 
-  changeRestaurantName(mobileNumber, hotelName) async {
+  changeRestaurantName(hotelName) async {
+    var mobileNumber = await jwt.decode();
+    mobileNumber = mobileNumber.toString();
     try {
       return await dio.patch(base_URL + "/updateprofile/" + mobileNumber,
           data: {"hotelName": hotelName},
@@ -31,17 +33,21 @@ class AccountService {
     }
   }
 
-  changeAddress(mobileNumber, hotelName) async {
+  changeAddress(address) async {
+    var mobileNumber = await jwt.decode();
+    mobileNumber = mobileNumber.toString();
     try {
       return await dio.patch(base_URL + "/updateprofile/" + mobileNumber,
-          data: {"hotelName": hotelName},
+          data: {"address": address},
           options: Options(contentType: Headers.formUrlEncodedContentType));
     } on DioError catch (e) {
       // Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
     }
   }
 
-  updateLocation(mobileNumber, hotelName) async {
+  updateLocation(hotelName) async {
+    var mobileNumber = await jwt.decode();
+    mobileNumber = mobileNumber.toString();
     try {
       return await dio.patch(base_URL + "/updateprofile/" + mobileNumber,
           data: {"hotelName": hotelName},

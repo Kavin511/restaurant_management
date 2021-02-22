@@ -5,8 +5,6 @@ class Menu {
   String price;
   String foodType;
   String availability;
-
-  // String mobileNumber;
   String foodItems;
 
   Menu({
@@ -20,8 +18,6 @@ class Menu {
   });
 
   Menu.fromJson(Map<String, dynamic> json) {
-    // mobileNumber=json['mobileNumber'];
-    // foodItems=json['foodItems'];
     foodName = json['foodName'];
     print(foodName);
     foodDesc = json['foodDesc'];
@@ -34,7 +30,9 @@ class Menu {
 
 class MenuResponse {
   List<Menu> menu;
+
   MenuResponse({this.menu});
+
   MenuResponse.fromJson(Map<String, dynamic> json) {
     print(json['result']['foodItems']);
     if (json['result']['foodItems'] != null) {

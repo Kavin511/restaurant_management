@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-
-import 'file:///D:/C%20files/AndroidStudioProjects/restaurant_app/lib/Services/Auth/Authservice.dart';
+import 'package:restaurant_app/Services/Auth/Authservice.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -14,7 +12,6 @@ class _SignUpState extends State<SignUp> {
   final phone_numer = TextEditingController();
   final password_controller = TextEditingController();
   final mail_controller = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +45,6 @@ class _SignUpState extends State<SignUp> {
                 prefixIcon: Icon(Icons.mail),
                 labelText: 'Email',
               ),
-              obscureText: true,
             ),
             SizedBox(height: 12.0),
             TextField(
@@ -61,28 +57,38 @@ class _SignUpState extends State<SignUp> {
               obscureText: true,
             ),
             SizedBox(height: 12.0),
-            MaterialButton(
-              child: Text('Create Account'),
-              onPressed: () async {
-                await AuthService()
-                    .addNew(
-                        phone_numer.text.toString().trim(),
-                        password_controller.text.toString().trim(),
-                        mail_controller.text.toString().trim())
-                    .then((val) => {
-                          if (val.data['success'])
-                            {
-                              Get.toNamed('/dashboard'),
-                              // Fluttertoast.showToast(
-                              //     msg: val.data['msg'].toString(),
-                              //     toastLength: Toast.LENGTH_LONG,
-                              //     gravity: ToastGravity.BOTTOM,
-                              //     backgroundColor: Colors.grey,
-                              //     textColor: Colors.white,
-                              //     fontSize: 16.0)
-                            }
-                        });
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MaterialButton(
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text('Create Account'),
+                ),
+                color: Colors.blueAccent,
+                textColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                onPressed: () async {
+                  await AuthService()
+                      .addNew(
+                          phone_numer.text.toString().trim(),
+                          password_controller.text.toString().trim(),
+                          mail_controller.text.toString().trim())
+                      .then((val) => {
+                            if (val.data['msg'])
+                              {
+                                Get.toNamed('/dashboard'),
+                                // Fluttertoast.showToast(
+                                //     msg: val.data['msg'].toString(),
+                                //     toastLength: Toast.LENGTH_LONG,
+                                //     gravity: ToastGravity.BOTTOM,
+                                //     backgroundColor: Colors.grey,
+                                //     textColor: Colors.white,
+                                //     fontSize: 16.0)
+                              }
+                          });
+                },
+              ),
             ),
             SizedBox(height: 32.0),
             FlatButton(

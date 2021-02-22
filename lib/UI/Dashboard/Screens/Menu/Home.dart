@@ -17,10 +17,8 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
-
 class FadeRouteBuilder<T> extends PageRouteBuilder<T> {
   final Widget page;
-
   FadeRouteBuilder({@required this.page})
       : super(
           pageBuilder: (context, animation1, animation2) => page,
@@ -29,7 +27,6 @@ class FadeRouteBuilder<T> extends PageRouteBuilder<T> {
           },
         );
 }
-
 void onTap() {
   Get.toNamed(
     '/menu',
@@ -46,7 +43,6 @@ class _HomeState extends State<Home> {
   String mobileNumber = '';
   jwtDecoder jwt;
   Menu menu = new Menu();
-
   @override
   void initState() {
     super.initState();

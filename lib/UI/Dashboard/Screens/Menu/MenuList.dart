@@ -16,8 +16,15 @@ class _MenuListState extends State<MenuList> {
   Widget build(BuildContext context) {
     print(widget.menuData);
     return Scaffold(
-        body: ListView.builder(
-            itemCount: widget.menuData.length,
-            itemBuilder: (context, index) => MenuCard(widget.menuData[index])));
+        body: widget.menuData.length > 0
+            ? ListView.builder(
+                itemCount: widget.menuData.length,
+                itemBuilder: (context, index) =>
+                    MenuCard(widget.menuData[index]))
+            : Center(
+                child: Text(
+                'No items found please add menu',
+                style: TextStyle(fontSize: 18),
+              )));
   }
 }
