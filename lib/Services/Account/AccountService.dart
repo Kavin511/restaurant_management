@@ -1,14 +1,21 @@
 import 'package:dio/dio.dart';
+import 'package:restaurant_app/jwtDecoder/jwtDecoder.dart';
+import 'package:restaurant_app/jwtDecoder/profileDecoder.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 
 class AccountService {
   Dio dio = new Dio();
   String base_URL = "https://restaurant-backend.herokuapp.com/restaurant";
+  jwtDecoder jwt = jwtDecoder();
+  ProfileDecoder profileDecoder = ProfileDecoder();
 
-  getProfile(mobileNumber) async {
+  getProfile() async {
+    var mobileNum = await jwt.decode();
+    mobileNum = mobileNum.toString();
     try {
-      return await dio.get(base_URL + "/getProfile/" + mobileNumber,
+      var response = await dio.get(base_URL + "/getProfile/" + mobileNum,
           options: Options(contentType: Headers.formUrlEncodedContentType));
+      profileDecoder.decode(response.data['profile']);
     } on DioError catch (e) {
       // Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
     }

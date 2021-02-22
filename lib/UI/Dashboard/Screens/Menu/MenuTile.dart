@@ -63,8 +63,10 @@ class _MenuTileState extends State<MenuTile> {
                   child: SizedBox(
                     height: 100,
                     width: 100,
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage('images/food.jpg'),
+                    child: InkWell(
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('images/food.jpg'),
+                      ),
                     ),
                   ),
                 ),

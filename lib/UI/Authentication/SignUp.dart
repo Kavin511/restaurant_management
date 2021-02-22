@@ -13,6 +13,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final phone_numer = TextEditingController();
   final password_controller = TextEditingController();
+  final mail_controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,16 @@ class _SignUpState extends State<SignUp> {
             ),
             SizedBox(height: 12.0),
             TextField(
+              controller: mail_controller,
+              decoration: InputDecoration(
+                filled: true,
+                prefixIcon: Icon(Icons.mail),
+                labelText: 'Email',
+              ),
+              obscureText: true,
+            ),
+            SizedBox(height: 12.0),
+            TextField(
               controller: password_controller,
               decoration: InputDecoration(
                 filled: true,
@@ -50,24 +61,14 @@ class _SignUpState extends State<SignUp> {
               obscureText: true,
             ),
             SizedBox(height: 12.0),
-            // ButtonBar(
-            //   alignment: MainAxisAlignment.center,
-            //   children: <Widget>[
-            //     // FlatButton(
-            //     //   child: Text('CANCEL'),
-            //     //   onPressed: () {
-            //     //     Get.back();
-            //     //   },
-            //     // ),
-            //
-            //   ],
-            // ),
-            CupertinoButton.filled(
+            MaterialButton(
               child: Text('Create Account'),
-              onPressed: () {
-                AuthService()
-                    .addNew(phone_numer.text.toString().trim(),
-                        password_controller.text.toString().trim())
+              onPressed: () async {
+                await AuthService()
+                    .addNew(
+                        phone_numer.text.toString().trim(),
+                        password_controller.text.toString().trim(),
+                        mail_controller.text.toString().trim())
                     .then((val) => {
                           if (val.data['success'])
                             {

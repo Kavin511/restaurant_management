@@ -77,12 +77,11 @@ class MenuDescTile extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 8.0, top: 5),
                               child: Icon(
-                                CupertinoIcons.circle_filled,
-                                color:
-                                availabiliy == "true" ? Colors.green : Colors
-                                    .red,
-                                size: 15,
-                              ),
+                                Icons.circle,
+                        color:
+                            availabiliy == "true" ? Colors.green : Colors.red,
+                        size: 15,
+                      ),
                             ))
                       ]))
             ],

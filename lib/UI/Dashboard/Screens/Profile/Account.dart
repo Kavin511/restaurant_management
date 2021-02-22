@@ -5,25 +5,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:restaurant_app/UI/Authentication/Login.dart';
+import 'package:restaurant_app/Services/Account/AccountService.dart';
+import 'package:restaurant_app/jwtDecoder/profileDecoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Account extends StatefulWidget {
   @override
   _AccountState createState() => _AccountState();
 }
+
 class _AccountState extends State<Account> {
   final profileState = GlobalKey<_AccountState>();
   bool profileCompleted = false;
-  String mobileNumber;
+  AccountService accountService;
+  ProfileDecoder profileDecoder;
+
+  // var decodedProfile;
   void onTap() {
     Get.toNamed(
       '/profileComplete',
     );
   }
+
+  @override
+  void initState() {
+    accountService = AccountService();
+    profileDecoder = ProfileDecoder();
+  }
+
+  getAccountData() async {
+    await accountService.getProfile();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -84,22 +101,65 @@ class _AccountState extends State<Account> {
           // ),
           Card(
             child: InkWell(
-              onTap: () => {},
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(
-                          style:
-                              TextStyle(color: Colors.redAccent, fontSize: 18),
-                          text: 'Logout'),
+              onTap: () async {
+                await getAccountData();
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                            style: TextStyle(
+                                color: Colors.redAccent, fontSize: 18),
+                            text: 'Logout'),
+                      ),
                     ),
-                  ),
-                  // Icon(Icons.logout,color: Colors.redAccent,)
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.logout,
+                        color: Colors.redAccent,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            child: InkWell(
+              onTap: () async {
+                await removeLogin();
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                            style: TextStyle(
+                                color: Colors.redAccent, fontSize: 18),
+                            text: 'Logout'),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.logout,
+                        color: Colors.redAccent,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -110,6 +170,6 @@ class _AccountState extends State<Account> {
   removeLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs?.clear();
-    return LoginPage();
+    return Get.offAllNamed('/');
   }
 }

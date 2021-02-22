@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class AuthService {
   Dio dio = new Dio();
   String base_URL = "https://restaurant-backend.herokuapp.com/restaurant";
-
   login(mobileNumber, password) async {
     try {
       return await dio.post(base_URL + "/login",
@@ -26,12 +25,12 @@ class AuthService {
     }
   }
 
-  addNew(mobileNumber, password) async {
+  addNew(mobileNumber, password, String email) async {
     try {
       return await dio.post(base_URL + "/register", data: {
         "mobileNumber": mobileNumber,
         "password": password,
-        "email": mobileNumber
+        "email": email
       });
     } on DioError catch (e) {
       // Fluttertoast.showToast(
