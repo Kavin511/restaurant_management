@@ -64,7 +64,8 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: RefreshIndicator(
-        color: Colors.green,
+        displacement: -10,
+        color: Colors.red,
         onRefresh: () {
           return menuBloc.fetchMenu();
         },

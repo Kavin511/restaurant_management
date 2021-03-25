@@ -8,7 +8,6 @@ class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
-
 class _LoginPageState extends State<LoginPage> {
   final phone_number = TextEditingController();
   final password_controller = TextEditingController();
@@ -50,7 +49,6 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 12.0),
             CupertinoButton.filled(
               onPressed: () async {
-                AuthService().test().then((val) => {print(val)});
                 AuthService()
                     .login(phone_number.text.toString().trim(),
                         password_controller.text.toString().trim())

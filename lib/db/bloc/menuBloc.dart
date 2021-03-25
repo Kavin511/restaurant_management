@@ -10,7 +10,6 @@ class MenuBloc {
   StreamController _controller;
 
   StreamSink<MenuApiResponse<List<Menu>>> get menuListSink => _controller.sink;
-
   Stream<MenuApiResponse<List<Menu>>> get menuListStream => _controller.stream;
 
   MenuBloc() {

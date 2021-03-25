@@ -27,12 +27,9 @@ class Menu {
     availability = json['availability'];
   }
 }
-
 class MenuResponse {
   List<Menu> menu;
-
   MenuResponse({this.menu});
-
   MenuResponse.fromJson(Map<String, dynamic> json) {
     print(json['result']['foodItems']);
     if (json['result']['foodItems'] != null) {
