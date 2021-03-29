@@ -17,7 +17,6 @@ class MenuBloc {
     _menuRepository = MenuRepository();
     fetchMenu();
   }
-
   fetchMenu() async {
     jwtDecoder jwt = jwtDecoder();
     var mobileNumber = await jwt.decode();

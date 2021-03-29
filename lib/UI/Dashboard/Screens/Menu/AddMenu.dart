@@ -34,6 +34,7 @@ class _MenuState extends State<AddMenu> {
   final TextEditingController foodPriceController = TextEditingController();
   final TextEditingController foodDescriptionController =
       TextEditingController();
+  final imageUrlController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool isLoading = false;
   MenuBloc menuBloc;
@@ -46,8 +47,13 @@ class _MenuState extends State<AddMenu> {
           isLoading = !isLoading;
         });
         MenuService()
-            .addMenu(foodNameController.text, foodDescriptionController.text,
-                foodPriceController.text, category, foodType)
+            .addMenu(
+                foodNameController.text,
+                foodDescriptionController.text,
+                foodPriceController.text,
+                category,
+                foodType,
+                imageUrlController.text)
             .then(
               (val) => {
                 setState(() {
@@ -65,7 +71,6 @@ class _MenuState extends State<AddMenu> {
         // });
       }
     }
-
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
@@ -86,6 +91,32 @@ class _MenuState extends State<AddMenu> {
               key: _formKey,
               child: Column(
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: imageUrlController,
+                      validator: (text) {
+                        if (text.isEmpty || text.length < 4) {
+                          return 'Enter food image url ';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                          hintText: "Food url",
+                          labelText: 'Food url',
+                          filled: true,
+                          fillColor: const Color(0xFFf8f8f8),
+                          focusedBorder: new OutlineInputBorder(
+                            borderSide:
+                                new BorderSide(color: Colors.blue, width: 2.0),
+                          ),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(6)),
+                          prefixIcon: Icon(Icons.fastfood)),
+                      cursorRadius: Radius.circular(100),
+                      autocorrect: true,
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(

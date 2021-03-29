@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/UI/Dashboard/Screens/Orders.dart';
 
 import 'Screens/Menu/Home.dart';
+import 'Screens/Orders/Orders.dart';
 import 'Screens/Profile/Account.dart';
-
 
 class Dashboard extends StatefulWidget {
   @override
@@ -14,7 +13,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   int _pageIndex = 0;
   String text = "Restaurant";
-  List<Widget> tabList = [Home(), Orders(), Account()];
+  List<Widget> tabList = [Home(), new Order(), Account()];
   PageController _pageController;
 
   @override
@@ -44,29 +43,26 @@ class _DashboardState extends State<Dashboard> {
           centerTitle: true,
         ),
         bottomNavigationBar: BottomNavigationBar(
-          onTap: (index) => {
-            this._pageController.animateToPage(index,
-                duration: const Duration(milliseconds: 100),
-                curve: Curves.easeInToLinear),
+          onTap: (index) =>
+          {
+            setState(() => {
+                  _pageIndex = index,
+                }),
           },
           currentIndex: _pageIndex,
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home), title: Text('Menu')),
             BottomNavigationBarItem(
-                icon: Icon(Icons.format_list_bulleted),
-                title: Text('Orders')),
+                icon: Icon(Icons.format_list_bulleted), title: Text('Orders')),
             BottomNavigationBarItem(
                 icon: Icon(Icons.supervisor_account), title: Text('Account'))
           ],
         ),
-        body: PageView(
-          children: tabList,
-          controller: _pageController,
-          onPageChanged: onPageChange,
+        body: Center(
+          child: tabList[_pageIndex],
         ));
   }
-
   onTabChanged(int index) {}
 
   void onPageChange(int value) {

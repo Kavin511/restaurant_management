@@ -7,7 +7,8 @@ class MenuService {
   Dio dio = new Dio();
   String base_URL = "https://restaurant-backend.herokuapp.com/restaurant";
   jwtDecoder jwt = jwtDecoder();
-  addMenu(foodName, foodDesc, price, category, foodType) async {
+
+  addMenu(foodName, foodDesc, price, category, foodType, imageUrl) async {
     var mobileNum = await jwt.decode();
     mobileNum = mobileNum.toString();
     Response response;
@@ -15,6 +16,7 @@ class MenuService {
       print(mobileNum);
       response = await dio.patch(base_URL + "/updateMenu/$mobileNum",
           data: {
+            "imageUrl": imageUrl.toString(),
             "foodName": foodName.toString(),
             "foodDesc": foodDesc.toString(),
             "category": category.toString(),

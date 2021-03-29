@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:rect_getter/rect_getter.dart';
+import 'package:restaurant_app/Constants.dart';
 import 'package:restaurant_app/db/Model/menuModel.dart';
 import 'package:restaurant_app/db/Networking/MenuNetworking/MenuResponse.dart';
 import 'package:restaurant_app/db/Repository/MenuRepository.dart';
@@ -32,7 +33,6 @@ void onTap() {
     '/menu',
   );
 }
-
 class _HomeState extends State<Home> {
   GlobalKey rectGetterKey = RectGetter.createGlobalKey();
   Rect rect;
@@ -42,7 +42,9 @@ class _HomeState extends State<Home> {
   MenuBloc menuBloc;
   String mobileNumber = '';
   jwtDecoder jwt;
+  bool refreshing = false;
   Menu menu = new Menu();
+
   @override
   void initState() {
     super.initState();
@@ -64,9 +66,10 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: RefreshIndicator(
-        displacement: -10,
-        color: Colors.red,
         onRefresh: () {
+          setState(() {
+            refreshing = true;
+          });
           return menuBloc.fetchMenu();
         },
         child: StreamBuilder<MenuApiResponse>(
@@ -78,7 +81,9 @@ class _HomeState extends State<Home> {
                     print('loading');
                     return new Container(
                       child: Center(
-                        child: CircularProgressIndicator(),
+                        child: !refreshing
+                            ? CircularProgressIndicator()
+                            : Container(),
                       ),
                     );
                     break;

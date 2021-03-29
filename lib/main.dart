@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:restaurant_app/Constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'UI/Authentication/Login.dart';
@@ -30,18 +30,18 @@ class MyApp extends StatelessWidget {
     GetPage(name: '/menu', page: () => AddMenu(), curve: Curves.fastOutSlowIn),
   ];
   final token;
-
   MyApp({this.token});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      defaultTransition: Transition.fadeIn,
+      defaultTransition: Transition.leftToRightWithFade,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          primaryColorBrightness: Brightness.dark,
           primarySwatch: Colors.blue,
-          textTheme: GoogleFonts.robotoTextTheme(
-            Theme.of(context).textTheme,
-          )),
+          textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor)),
       home: token == null ? LoginPage() : Dashboard(),
       getPages: route,
       initialRoute: token == null ? '/' : "/dashboard",

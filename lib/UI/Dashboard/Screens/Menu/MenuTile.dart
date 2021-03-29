@@ -11,6 +11,7 @@ class MenuTile extends StatefulWidget {
     this.price,
     this.foodType,
     this.availabiliy,
+    this.imageUrl,
   }) : super(key: key);
 
   final String foodName;
@@ -18,6 +19,7 @@ class MenuTile extends StatefulWidget {
   final String price;
   final String foodType;
   final String availabiliy;
+  final String imageUrl;
 
   @override
   _MenuTileState createState() => _MenuTileState();
@@ -27,7 +29,6 @@ class _MenuTileState extends State<MenuTile> {
   final GlobalKey _menuKey = new GlobalKey();
   MenuService menuService;
   MenuBloc menuBloc;
-
   @override
   void initState() {
     super.initState();
@@ -65,7 +66,7 @@ class _MenuTileState extends State<MenuTile> {
                     width: 100,
                     child: InkWell(
                       child: CircleAvatar(
-                        backgroundImage: AssetImage('images/food.jpg'),
+                        backgroundImage: NetworkImage(widget.imageUrl),
                       ),
                     ),
                   ),

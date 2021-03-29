@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:restaurant_app/Constants.dart';
 
 class AuthService {
   Dio dio = new Dio();
-  String base_URL = "https://restaurant-backend.herokuapp.com/restaurant";
+
   login(mobileNumber, password) async {
     try {
-      return await dio.post(base_URL + "/login",
+      return await dio.post(restaurantUrl + "/login",
           data: {"mobileNumber": mobileNumber, "password": password},
           options: Options(contentType: Headers.formUrlEncodedContentType));
     } on DioError catch (e) {
@@ -17,44 +18,29 @@ class AuthService {
     }
   }
 
-  test() async {
-    try {
-      return await dio.post(base_URL);
-    } on DioError catch (e) {
-      print(e);
-    }
-  }
 
-  addNew(mobileNumber, password, String email) async {
+  addNew(name, address, mobileNumber, password, String email) async {
     try {
-      return await dio.post(base_URL + "/register", data: {
+      return await dio.post(restaurantUrl + "/register", data: {
         "mobileNumber": mobileNumber,
         "password": password,
-        "email": email
+        "email": email,
+        "hotelName": name,
+        "address": address,
       });
     } on DioError catch (e) {
-      // Fluttertoast.showToast(
-      //     msg: e.toString(),
-      //     toastLength: Toast.LENGTH_LONG,
-      //     gravity: ToastGravity.BOTTOM,
-      //     backgroundColor: Colors.grey,
-      //     textColor: Colors.white,
-      //     fontSize: 16.0);
+      Get.snackbar('Error occurred', e.toString(),
+          snackPosition: SnackPosition.BOTTOM);
     }
   }
 
   getInfo(tokens) async {
     try {
       dio.options.headers['Authorization'] = 'Bearer $tokens';
-      return await dio.get(base_URL + "/getInfo");
+      return await dio.get(restaurantUrl + "/getInfo");
     } on DioError catch (e) {
-      // Fluttertoast.showToast(
-      //     msg: e.response.data['msg'].toString(),
-      //     toastLength: Toast.LENGTH_LONG,
-      //     gravity: ToastGravity.BOTTOM,
-      //     backgroundColor: Colors.grey,
-      //     textColor: Colors.white,
-      //     fontSize: 16.0);
+      Get.snackbar('Error occurred', e.toString(),
+          snackPosition: SnackPosition.BOTTOM);
     }
   }
 }

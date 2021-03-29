@@ -14,6 +14,7 @@ class MenuCard extends StatelessWidget {
         foodDesc: menuData.foodDesc,
         price: menuData.price,
         foodType: menuData.foodType,
-        availabiliy: menuData.availability);
+        availabiliy: menuData.availability,
+        imageUrl: menuData.imageUrl);
   }
 }
