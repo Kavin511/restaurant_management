@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:restaurant_app/Services/Orders/Orders.dart';
 import 'package:restaurant_app/db/Model/OrderModal.dart';
 import 'package:slimy_card/slimy_card.dart';
 
@@ -31,9 +33,9 @@ class _OrderListState extends State<OrderList> {
                     topCardWidget: OrderCard(index),
                     topCardHeight: 150,
                     width: MediaQuery.of(context).size.width * .95,
-                    color: kMainColor,
+                    color: kPrimaryColor,
                     bottomCardWidget: bottomCard(index),
-                    bottomCardHeight: 150,
+                    bottomCardHeight: 180,
                     borderRadius: 16,
                   )))
           : Center(
@@ -46,23 +48,25 @@ class _OrderListState extends State<OrderList> {
   }
 
   Widget bottomCard(int index) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Expanded(
-          flex: 1,
-          child: Text(
-            'Delivery Location',
-            style: TextStyle(
-                color: kTextLightColor,
-                // fontSize: 16,
-                fontWeight: FontWeight.bold),
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(16)),
+      padding: EdgeInsets.all(kDefaultPadding / 2),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            flex: 1,
+            child: Text(
+              'Delivery Location',
+              style: TextStyle(
+                  color: kTextLightColor,
+                  // fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-        Expanded(
-          flex: 6,
-          child: Column(
+          Column(
             children: [
               Row(
                 children: [
@@ -109,10 +113,39 @@ class _OrderListState extends State<OrderList> {
                   ),
                 ],
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  widget.orderList[index].status == "Pending"
+                      ? Column(
+                          children: [
+                            IconButton(
+                                icon: Icon(
+                                  Icons.check,
+                                  color: Colors.green,
+                                ),
+                                iconSize: 30,
+                                onPressed: () => {
+                                      Get.snackbar(
+                                          'Processing ', 'Changing status',
+                                          snackPosition: SnackPosition.BOTTOM),
+                                      OrderServices().updateStatus(
+                                          widget.orderList[index].id,
+                                          'Completed'),
+                                      setState(() => {
+                                            widget.orderList[index].status =
+                                                "Completed",
+                                          }),
+                                    }),
+                          ],
+                        )
+                      : Text(widget.orderList[index].status),
+                ],
+              )
             ],
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 
@@ -136,7 +169,7 @@ class _OrderListState extends State<OrderList> {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 12,
-                color: kTextLightColor.withOpacity(.7),
+                color: kTextLightColor,
               ),
             ),
           ),
@@ -172,13 +205,18 @@ class _OrderListState extends State<OrderList> {
                       children: [
                         widget.orderList[index].status == 'Pending'
                             ? Icon(
-                                CupertinoIcons.clock_fill,
+                                Icons.access_time_outlined,
                                 color: kSecondaryColor,
                               )
-                            : Icon(
-                                Icons.check,
-                                color: Colors.green.withOpacity(.9),
-                              ),
+                            : widget.orderList[index].status == "Completed"
+                                ? (Icon(
+                                    Icons.check,
+                                    color: Colors.green.withOpacity(.9),
+                                  ))
+                                : Icon(
+                                    Icons.cancel,
+                                    color: Colors.redAccent.withOpacity(.9),
+                                  ),
                         Text(widget.orderList[index].status)
                       ]),
                 )

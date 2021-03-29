@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:restaurant_app/Constants.dart';
 import 'package:restaurant_app/Services/Menu/MenuService.dart';
 import 'package:restaurant_app/Utils/DecimalFormatter.dart';
 import 'package:restaurant_app/db/bloc/menuBloc.dart';
@@ -74,6 +75,7 @@ class _MenuState extends State<AddMenu> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
+        backgroundColor: kPrimaryColor,
         leading: IconButton(
           icon: Icon(Icons.keyboard_backspace),
           onPressed: () {
@@ -107,8 +109,7 @@ class _MenuState extends State<AddMenu> {
                           filled: true,
                           fillColor: const Color(0xFFf8f8f8),
                           focusedBorder: new OutlineInputBorder(
-                            borderSide:
-                                new BorderSide(color: Colors.blue, width: 2.0),
+                            borderSide: new BorderSide(width: 2.0),
                           ),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(6)),
@@ -134,7 +135,7 @@ class _MenuState extends State<AddMenu> {
                           fillColor: const Color(0xFFf8f8f8),
                           focusedBorder: new OutlineInputBorder(
                             borderSide:
-                            new BorderSide(color: Colors.blue, width: 2.0),
+                            new BorderSide(width: 2.0),
                           ),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(6)),
@@ -222,7 +223,7 @@ class _MenuState extends State<AddMenu> {
                                 leading: Radio(
                                     value: 2,
                                     groupValue: _value,
-                                    // activeColor: Colors.blueAccent,
+
                                     onChanged: (value) {
                                       setState(() {
                                         _value = value;
@@ -274,9 +275,11 @@ class _MenuState extends State<AddMenu> {
                       ),
                       Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: MaterialButton(
+                          child: CupertinoButton(
+                            color: kPrimaryColor,
                             child: Text('Add Food'),
                             onPressed: validateFoods,
+
                           )),
                       isLoading
                       ? Center(
@@ -284,9 +287,8 @@ class _MenuState extends State<AddMenu> {
                             width: 50,
                             height: 50,
                             child: CircularProgressIndicator(
-                              valueColor:
-                                  AlwaysStoppedAnimation(Colors.blueAccent),
-                              strokeWidth: 3,
+
+                            strokeWidth: 3,
                             ),
                           ),
                         )

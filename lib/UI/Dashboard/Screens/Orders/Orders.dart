@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:restaurant_app/db/Networking/OrderNetworking/OrderResponse.dart';
 import 'package:restaurant_app/db/bloc/OrderBloc.dart';
 
@@ -37,6 +35,7 @@ class _OrderState extends State<Order> {
                   print('loading orders');
                   return Center(
                     child: new Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('Loading orders'),
                         CircularProgressIndicator(),
@@ -45,13 +44,11 @@ class _OrderState extends State<Order> {
                   );
                   break;
                 case Status.COMPLETED:
-                  Get.snackbar('title', 'message');
                   return OrderList(orderList: snapshot.data.data);
                   break;
                 case Status.ERROR:
                   return new Container(
-                    child: Center(
-                        child: Text('No menu items found Add new Items...')),
+                    child: Center(child: Text('No orders currently')),
                   );
               }
             }

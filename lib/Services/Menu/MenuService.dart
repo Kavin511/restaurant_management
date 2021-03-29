@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:restaurant_app/jwtDecoder/jwtDecoder.dart';
-
 class MenuService {
   Dio dio = new Dio();
   String base_URL = "https://restaurant-backend.herokuapp.com/restaurant";
@@ -26,9 +25,7 @@ class MenuService {
           },
           options: Options(contentType: Headers.formUrlEncodedContentType));
     } on DioError catch (e) {
-      SnackBar(
-        content: Text(e.toString()),
-      );
+      SnackBar(content: Text(e.toString()));
     }
     return response;
   }

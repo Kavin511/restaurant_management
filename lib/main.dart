@@ -35,12 +35,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      defaultTransition: Transition.leftToRightWithFade,
+      // defaultTransition: Transition.leftToRightWithFade,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
           primaryColorBrightness: Brightness.dark,
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.blueGrey,
           textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor)),
       home: token == null ? LoginPage() : Dashboard(),
       getPages: route,

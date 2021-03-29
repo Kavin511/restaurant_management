@@ -4,16 +4,14 @@ import 'package:flutter/material.dart';
 import 'Screens/Menu/Home.dart';
 import 'Screens/Orders/Orders.dart';
 import 'Screens/Profile/Account.dart';
-
 class Dashboard extends StatefulWidget {
   @override
   _DashboardState createState() => _DashboardState();
 }
-
 class _DashboardState extends State<Dashboard> {
   int _pageIndex = 0;
   String text = "Restaurant";
-  List<Widget> tabList = [Home(), new Order(), Account()];
+  List<Widget> tabList = [Home(), Order(), Account()];
   PageController _pageController;
 
   @override
@@ -29,14 +27,11 @@ class _DashboardState extends State<Dashboard> {
     super.dispose();
     _pageController.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     Widget actionBarText() {
       return new Text(text);
     }
-
-    setState(() {});
     return Scaffold(
         appBar: AppBar(
           title: actionBarText(),
