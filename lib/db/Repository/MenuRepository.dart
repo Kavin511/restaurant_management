@@ -1,4 +1,4 @@
-import 'package:restaurant_app/db/Model/menuModel.dart';
+import 'package:restaurant_app/Model/menuModel.dart';
 import 'package:restaurant_app/db/Networking/MenuNetworking/MenuApiHelper.dart';
 
 class MenuRepository {

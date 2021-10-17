@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:restaurant_app/db/Model/menuModel.dart';
+import 'package:restaurant_app/Model/menuModel.dart';
 import 'package:restaurant_app/db/Networking/MenuNetworking/MenuResponse.dart';
 import 'package:restaurant_app/db/Repository/MenuRepository.dart';
 import 'package:restaurant_app/jwtDecoder/jwtDecoder.dart';
@@ -10,6 +10,7 @@ class MenuBloc {
   StreamController _controller;
 
   StreamSink<MenuApiResponse<List<Menu>>> get menuListSink => _controller.sink;
+
   Stream<MenuApiResponse<List<Menu>>> get menuListStream => _controller.stream;
 
   MenuBloc() {
@@ -17,6 +18,7 @@ class MenuBloc {
     _menuRepository = MenuRepository();
     fetchMenu();
   }
+
   fetchMenu() async {
     jwtDecoder jwt = jwtDecoder();
     var mobileNumber = await jwt.decode();

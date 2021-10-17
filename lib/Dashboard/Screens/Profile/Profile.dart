@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:restaurant_app/Model/profileModel.dart';
 import 'package:restaurant_app/Services/Account/AccountService.dart';
-import 'package:restaurant_app/UI/Dashboard/Screens/Profile/HotelNameCompletionSheet.dart';
-import 'package:restaurant_app/db/Model/profileModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'HotelNameCompletionSheet.dart';
 
 class ProfilePage extends StatefulWidget {
   final Profile profileData;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/bloc/OrderBloc.dart';
 import 'package:restaurant_app/db/Networking/OrderNetworking/OrderResponse.dart';
-import 'package:restaurant_app/db/bloc/OrderBloc.dart';
 
 import 'OrderList.dart';
 

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:rect_getter/rect_getter.dart';
-import 'package:restaurant_app/Constants.dart';
-import 'package:restaurant_app/db/Model/menuModel.dart';
+import 'package:restaurant_app/AppConstants.dart';
+import 'package:restaurant_app/Model/menuModel.dart';
+import 'package:restaurant_app/bloc/menuBloc.dart';
 import 'package:restaurant_app/db/Networking/MenuNetworking/MenuResponse.dart';
 import 'package:restaurant_app/db/Repository/MenuRepository.dart';
-import 'package:restaurant_app/db/bloc/menuBloc.dart';
 import 'package:restaurant_app/jwtDecoder/jwtDecoder.dart';
 
 import 'MenuList.dart';

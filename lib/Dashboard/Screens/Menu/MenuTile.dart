@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/Services/Menu/MenuService.dart';
-import 'package:restaurant_app/UI/Dashboard/Screens/Menu/MenuDescTile.dart';
-import 'package:restaurant_app/db/bloc/menuBloc.dart';
+import 'package:restaurant_app/bloc/menuBloc.dart';
+
+import 'MenuDescTile.dart';
 
 class MenuTile extends StatefulWidget {
   MenuTile({

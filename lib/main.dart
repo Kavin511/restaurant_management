@@ -1,17 +1,22 @@
+import 'dart:ui';
+
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:restaurant_app/Constants.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:restaurant_app/Authentication/SignUp.dart';
+import 'package:restaurant_app/AppConstants.dart';
+import 'package:restaurant_app/Dashboard/Dashboard.dart';
+import 'package:restaurant_app/Dashboard/Screens/Menu/AddMenu.dart';
+import 'package:restaurant_app/Dashboard/Screens/ProfileCompletion.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'UI/Authentication/Login.dart';
-import 'UI/Authentication/SignUp.dart';
-import 'UI/Dashboard/Dashboard.dart';
-import 'UI/Dashboard/Screens/Menu/AddMenu.dart';
-import 'UI/Dashboard/Screens/ProfileCompletion.dart';
+import 'Authentication/Login/Login.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,11 +28,11 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   static var route = [
-    GetPage(name: '/', page: () => LoginPage()),
-    GetPage(name: '/signUp', page: () => SignUp()),
-    GetPage(name: '/dashboard', page: () => Dashboard()),
-    GetPage(name: '/profileComplete', page: () => ProfileCompletion()),
-    GetPage(name: '/menu', page: () => AddMenu(), curve: Curves.fastOutSlowIn),
+    GetPage(name: '/', page: () => LoginPage(),popGesture: true,transition: Transition.upToDown,curve: Curves.fastOutSlowIn),
+    GetPage(name: '/signUp', page: () => SignUp(),popGesture: true,transition: Transition.upToDown,curve: Curves.fastOutSlowIn),
+    GetPage(name: '/dashboard', page: () => Dashboard(),popGesture: true,transition: Transition.upToDown,curve: Curves.fastOutSlowIn),
+    GetPage(name: '/profileComplete', page: () => ProfileCompletion(),popGesture: true,transition: Transition.upToDown,curve: Curves.fastOutSlowIn),
+    GetPage(name: '/menu', page: () => AddMenu(),popGesture: true,transition: Transition.upToDown,curve: Curves.fastOutSlowIn),
   ];
   final token;
   MyApp({this.token});
@@ -35,13 +40,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // defaultTransition: Transition.leftToRightWithFade,
+      defaultTransition: Transition.rightToLeft,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
           primaryColorBrightness: Brightness.dark,
           primarySwatch: Colors.blueGrey,
-          textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor)),
+          textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor,displayColor: kMainColor)),
       home: token == null ? LoginPage() : Dashboard(),
       getPages: route,
       initialRoute: token == null ? '/' : "/dashboard",

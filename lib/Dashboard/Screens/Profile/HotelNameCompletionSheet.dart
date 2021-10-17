@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/Services/Account/AccountService.dart';
-import 'package:restaurant_app/db/bloc/profilebloc.dart';
+import 'package:restaurant_app/bloc/profilebloc.dart';
 
 class HotelNameBottomSheet extends StatefulWidget {
   @override

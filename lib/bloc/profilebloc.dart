@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:restaurant_app/db/Model/profileModel.dart';
+import 'package:restaurant_app/Model/profileModel.dart';
 import 'package:restaurant_app/db/Networking/ProfileNetworking/ProfileResponse.dart';
 import 'package:restaurant_app/db/Repository/ProfileRepository.dart';
 import 'package:restaurant_app/jwtDecoder/jwtDecoder.dart';

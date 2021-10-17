@@ -1,0 +1,13 @@
+import 'package:flutter/material.dart';
+const mode="dev";
+const kSecondaryColor = const Color(0xff344955);
+const kDefaultPadding = 20.0;
+const String baseUrL = "https://fluttereats.herokuapp.com/fluttereats";
+const String restaurantUrl ="https://restaurant-backend.herokuapp.com/restaurant";
+const kTextColor=Color(0xFF535353);
+const kTextLightColor=Color(0xFF555454);
+const kErrorColor=Color(0x9FD30505);
+const kMainColor=Color(0xFFE5E5E5);
+const kSplashColor=Color(0xffd3d3);
+const kPrimaryColor=Color(0xfffd5b57);
+const kAccentColor=Color(0xffffac59);

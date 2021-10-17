@@ -4,11 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:restaurant_app/Model/OrderModal.dart';
 import 'package:restaurant_app/Services/Orders/Orders.dart';
-import 'package:restaurant_app/db/Model/OrderModal.dart';
 import 'package:slimy_card/slimy_card.dart';
 
-import '../../../../Constants.dart';
+import '../../../../AppConstants.dart';
 
 class OrderList extends StatefulWidget {
   List<OrderModal> orderList;

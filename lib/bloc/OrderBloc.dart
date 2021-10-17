@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:restaurant_app/db/Model/OrderModal.dart';
+import 'package:restaurant_app/Model/OrderModal.dart';
 import 'package:restaurant_app/db/Networking/OrderNetworking/OrderResponse.dart';
 import 'package:restaurant_app/db/Repository/OrderRepository.dart';
 

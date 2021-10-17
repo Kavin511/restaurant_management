@@ -6,10 +6,10 @@ import 'package:restaurant_app/db/Networking/MenuNetworking/MenuException.dart';
 
 class ApiHelper {
   String baseURl = "https://restaurant-backend.herokuapp.com/restaurant";
-  Future<dynamic> get(String url) async {
+  Future<dynamic> get(String endPoint) async {
     var responseJson;
     try {
-      final response = await http.get(baseURl + url);
+      final response = await http.get(Uri.parse(baseURl + endPoint));
       responseJson = _returnResponse(response);
     } on SocketException {}
     return responseJson;

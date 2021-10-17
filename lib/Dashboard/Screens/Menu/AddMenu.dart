@@ -7,10 +7,10 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:restaurant_app/Constants.dart';
+import 'package:restaurant_app/AppConstants.dart';
 import 'package:restaurant_app/Services/Menu/MenuService.dart';
 import 'package:restaurant_app/Utils/DecimalFormatter.dart';
-import 'package:restaurant_app/db/bloc/menuBloc.dart';
+import 'package:restaurant_app/bloc/menuBloc.dart';
 import 'package:restaurant_app/jwtDecoder/jwtDecoder.dart';
 
 class AddMenu extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:restaurant_app/db/Model/OrderModal.dart';
+import 'package:restaurant_app/Model/OrderModal.dart';
 import 'package:restaurant_app/db/Networking/OrderNetworking/OrderApiHelper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

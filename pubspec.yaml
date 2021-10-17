@@ -24,17 +24,13 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^3.11.1
-  google_fonts: ^0.2.0
+  google_fonts: ^2.1.0
   dio:
-  shared_preferences: ^0.5.12+4
+  shared_preferences: any
   rect_getter: ^0.0.1
-  image_picker: ^0.6.7+21
-  image_cropper: 1.0.2
-  localstorage: ^3.0.6
+  localstorage: any
   flutter_svg:
   jwt_decoder: ^1.0.4
-  image_form_field: ^0.1.0
-  rflutter_alert: ^2.0.2
   slimy_card: ^1.0.4
 dev_dependencies:
   flutter_test:

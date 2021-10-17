@@ -1,4 +1,4 @@
-import 'package:restaurant_app/db/Model/profileModel.dart';
+import 'package:restaurant_app/Model/profileModel.dart';
 import 'package:restaurant_app/db/Networking/ProfileNetworking/ProfileApiHelper.dart';
 
 class ProfileRepository {

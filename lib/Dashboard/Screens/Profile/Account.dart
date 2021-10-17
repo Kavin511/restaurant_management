@@ -6,9 +6,10 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:rect_getter/rect_getter.dart';
-import 'package:restaurant_app/UI/Dashboard/Screens/Profile/Profile.dart';
+import 'package:restaurant_app/bloc/profilebloc.dart';
 import 'package:restaurant_app/db/Networking/ProfileNetworking/ProfileResponse.dart';
-import 'package:restaurant_app/db/bloc/profilebloc.dart';
+
+import 'Profile.dart';
 
 class Account extends StatefulWidget {
   @override
@@ -58,7 +59,7 @@ class _AccountState extends State<Account> {
                     break;
                   case Status.COMPLETED:
                     print('completed');
-                    return new ProfilePage(profileData: snapshot.data.data);
+                    return ProfilePage(profileData: snapshot.data.data);
                     break;
                   case Status.ERROR:
                     print('error do');
