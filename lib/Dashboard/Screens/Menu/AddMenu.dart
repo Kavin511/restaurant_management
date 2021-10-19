@@ -95,7 +95,7 @@ class _MenuState extends State<AddMenu> {
               key: _formKey,
               child: Column(
                 children: [
-                  // foodImageField,
+                  foodImageField,
                   foodNameInputField,
                   foodDescriptionInputField,
                   foodPriceInputField,
@@ -182,7 +182,7 @@ class _MenuState extends State<AddMenu> {
                       padding: const EdgeInsets.all(8.0),
                       child: CupertinoButton(
                         color: kPrimaryColor,
-                        child: Text('Add Food'),
+                        child: Text('Add Item'),
                         onPressed: validateFoods,
                       )),
                   isLoading

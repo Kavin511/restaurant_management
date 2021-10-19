@@ -35,6 +35,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons:
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "images/logo.png"
 #  integration_test:
 #    sdk: flutter
 flutter:
