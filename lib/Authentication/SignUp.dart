@@ -197,7 +197,6 @@ class _SignUpState extends State<SignUp> {
     await AuthService()
         .addNew(
             nameController.text.toString().trim(),
-            addressController.text.toString().trim(),
             phone_numer.text.toString().trim(),
             password_controller.text.toString().trim(),
             mail_controller.text.toString().trim())
@@ -210,14 +209,14 @@ class _SignUpState extends State<SignUp> {
                   if (result.data['success'])
                     {
                       saveLogin(result.data['msg']),
-                      Get.toNamed('/dashboard'),
+                      Get.offAllNamed('/dashboard'),
                       Get.snackbar("Success", "Account created successfully !",
                           margin: EdgeInsets.all(10),
                           backgroundColor: Colors.lightGreen,
                           colorText: Colors.white)
                     }
                   else {
-                      Get.snackbar("Error", result.data['message'],
+                      Get.snackbar("Error", result.data['msg']??"Not able create new account please try after some time",
                           margin: EdgeInsets.all(10),
                           backgroundColor: kPrimaryColor,
                           colorText: Colors.white)

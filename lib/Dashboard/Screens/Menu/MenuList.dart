@@ -24,8 +24,8 @@ class _MenuListState extends State<MenuList> {
                     MenuCard(widget.menuData[index]))
             : Center(
                 child: Text(
-                'No items found please add menu',
-                style: TextStyle(fontSize: 18),
+                'No menu items found please add menu',
+                style: TextStyle(fontSize: 16),
               )));
   }
 }

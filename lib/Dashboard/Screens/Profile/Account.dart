@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:rect_getter/rect_getter.dart';
 import 'package:restaurant_app/bloc/profilebloc.dart';
 import 'package:restaurant_app/db/Networking/ProfileNetworking/ProfileResponse.dart';
+import 'package:restaurant_app/db/Repository/ProfileRepository.dart';
 
 import 'Profile.dart';
 
@@ -42,6 +43,7 @@ class _AccountState extends State<Account> {
       body: RefreshIndicator(
         color: Colors.green,
         onRefresh: () {
+          ProfileRepository().response=null;
           return profileBloc.fetchProfile();
         },
         child: StreamBuilder<ProfileApiResponse>(

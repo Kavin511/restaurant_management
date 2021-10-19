@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/bloc/OrderBloc.dart';
 import 'package:restaurant_app/db/Networking/OrderNetworking/OrderResponse.dart';
+import 'package:restaurant_app/db/Repository/OrderRepository.dart';
 
 import 'OrderList.dart';
 
@@ -23,7 +24,8 @@ class _OrderState extends State<Order> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () {
-        print('hel');
+        print("working");
+        OrderRepository().response=null;
         return orderBloc.fetchOrder();
       },
       child: StreamBuilder(

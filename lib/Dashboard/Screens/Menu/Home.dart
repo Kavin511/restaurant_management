@@ -18,8 +18,10 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
+
 class FadeRouteBuilder<T> extends PageRouteBuilder<T> {
   final Widget page;
+
   FadeRouteBuilder({@required this.page})
       : super(
           pageBuilder: (context, animation1, animation2) => page,
@@ -28,11 +30,13 @@ class FadeRouteBuilder<T> extends PageRouteBuilder<T> {
           },
         );
 }
+
 void onTap() {
   Get.toNamed(
     '/menu',
   );
 }
+
 class _HomeState extends State<Home> {
   GlobalKey rectGetterKey = RectGetter.createGlobalKey();
   Rect rect;
@@ -57,19 +61,22 @@ class _HomeState extends State<Home> {
     return Scaffold(
       floatingActionButton: RectGetter(
         key: rectGetterKey,
-        child: FloatingActionButton(
+        child: FloatingActionButton.extended(
+          isExtended: true,
           onPressed: onTap,
-          child: Icon(
+          label: Text("Add Menu"),
+          icon:  Icon(
             Icons.restaurant_menu,
-            semanticLabel: "Add menu item",
           ),
         ),
       ),
       body: RefreshIndicator(
+        color: Colors.grey,
         onRefresh: () {
           setState(() {
             refreshing = true;
           });
+          MenuRepository().response = null;
           return menuBloc.fetchMenu();
         },
         child: StreamBuilder<MenuApiResponse>(
@@ -97,7 +104,7 @@ class _HomeState extends State<Home> {
                     print('error do');
                     return new Container(
                       child: Center(
-                          child: Text('No menu items found Add new Items...')),
+                          child: Text('Error while fetching please try after some time')),
                     );
                     break;
                 }

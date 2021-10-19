@@ -24,15 +24,16 @@ class AuthService {
     });
   }
 
-  addNew(name, address, mobileNumber, password, String email) async {
+  addNew(name, mobileNumber, password, String email) async {
     try {
-      return await dio.post(restaurantUrl + "/register", data: {
-        "mobileNumber": mobileNumber,
-        "password": password,
-        "email": email,
-        "hotelName": name,
-        "address": address,
-      });
+      return await dio.post(restaurantUrl + "/register",
+          data: {
+            "mobileNumber": mobileNumber,
+            "password": password,
+            "email": email,
+            "hotelName": name,
+          },
+          options: Options(contentType: Headers.formUrlEncodedContentType));
     } on DioError catch (e) {
       Get.snackbar('Error occurred', e.toString(),
           snackPosition: SnackPosition.BOTTOM);

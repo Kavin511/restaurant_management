@@ -28,11 +28,11 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   static var route = [
-    GetPage(name: '/', page: () => LoginPage(),popGesture: true,transition: Transition.upToDown,curve: Curves.fastOutSlowIn),
-    GetPage(name: '/signUp', page: () => SignUp(),popGesture: true,transition: Transition.upToDown,curve: Curves.fastOutSlowIn),
-    GetPage(name: '/dashboard', page: () => Dashboard(),popGesture: true,transition: Transition.upToDown,curve: Curves.fastOutSlowIn),
-    GetPage(name: '/profileComplete', page: () => ProfileCompletion(),popGesture: true,transition: Transition.upToDown,curve: Curves.fastOutSlowIn),
-    GetPage(name: '/menu', page: () => AddMenu(),popGesture: true,transition: Transition.upToDown,curve: Curves.fastOutSlowIn),
+    GetPage(name: '/', page: () => LoginPage()),
+    GetPage(name: '/signUp', page: () => SignUp()),
+    GetPage(name: '/dashboard', page: () => Dashboard()),
+    GetPage(name: '/profileComplete', page: () => ProfileCompletion()),
+    GetPage(name: '/menu', page: () => AddMenu()),
   ];
   final token;
   MyApp({this.token});
@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      defaultTransition: Transition.rightToLeft,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,

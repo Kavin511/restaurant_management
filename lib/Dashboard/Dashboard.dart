@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'Screens/Menu/Home.dart';
 import 'Screens/Orders/Orders.dart';
 import 'Screens/Profile/Account.dart';
+
 class Dashboard extends StatefulWidget {
   @override
   _DashboardState createState() => _DashboardState();
 }
+
 class _DashboardState extends State<Dashboard> {
   int _pageIndex = 0;
   String text = "Restaurant";
@@ -27,37 +29,38 @@ class _DashboardState extends State<Dashboard> {
     super.dispose();
     _pageController.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     Widget actionBarText() {
       return new Text(text);
     }
+
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: actionBarText(),
           centerTitle: true,
         ),
         bottomNavigationBar: BottomNavigationBar(
-          onTap: (index) =>
-          {
+          onTap: (index) => {
             setState(() => {
                   _pageIndex = index,
                 }),
           },
           currentIndex: _pageIndex,
           items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Menu'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.home), title: Text('Menu')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.format_list_bulleted), title: Text('Orders')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.supervisor_account), title: Text('Account'))
+                icon: Icon(Icons.inventory_outlined), label: 'Orders'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account')
           ],
         ),
         body: Center(
           child: tabList[_pageIndex],
         ));
   }
+
   onTabChanged(int index) {}
 
   void onPageChange(int value) {

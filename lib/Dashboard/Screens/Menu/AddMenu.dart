@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:restaurant_app/AppConstants.dart';
@@ -72,6 +73,7 @@ class _MenuState extends State<AddMenu> {
         // });
       }
     }
+
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
@@ -93,202 +95,103 @@ class _MenuState extends State<AddMenu> {
               key: _formKey,
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      controller: imageUrlController,
-                      validator: (text) {
-                        if (text.isEmpty || text.length < 4) {
-                          return 'Enter food image url ';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          hintText: "Food url",
-                          labelText: 'Food url',
-                          filled: true,
-                          fillColor: const Color(0xFFf8f8f8),
-                          focusedBorder: new OutlineInputBorder(
-                            borderSide: new BorderSide(width: 2.0),
-                          ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6)),
-                          prefixIcon: Icon(Icons.fastfood)),
-                      cursorRadius: Radius.circular(100),
-                      autocorrect: true,
-                    ),
+                  // foodImageField,
+                  foodNameInputField,
+                  foodDescriptionInputField,
+                  foodPriceInputField,
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10),
+                    child: Row(children: [
+                      Expanded(
+                        child: ListTile(
+                          leading: Radio(
+                              value: 1,
+                              groupValue: _value,
+                              onChanged: (value) {
+                                setState(() {
+                                  _value = value;
+                                });
+                              }),
+                          title: Text('Veg'),
+                          onTap: () {
+                            setState(() {
+                              _value = 1;
+                              foodType = "Veg";
+                            });
+                          },
+                        ),
+                      ),
+                      Expanded(
+
+                        child: ListTile(
+                          leading: Radio(
+                              value: 2,
+                              groupValue: _value,
+                              onChanged: (value) {
+                                setState(() {
+                                  _value = value;
+                                });
+                              }),
+                          title: Text('Non-Veg'),
+                          onTap: () {
+                            setState(() {
+                              _value = 2;
+                              foodType = 'Non-Veg';
+                            });
+                          },
+                        ),
+                      )
+                    ]),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      controller: foodNameController,
-                      validator: (text) {
-                        if (text.isEmpty || text.length < 4) {
-                          return 'Food name should be at least 4 characters ';
+                    child: DropdownButtonFormField(
+                      validator: (String value) {
+                        if (value?.isEmpty ?? true) {
+                          return 'Select suitable category';
                         }
                         return null;
                       },
                       decoration: InputDecoration(
-                          hintText: "Food name",
-                          labelText: 'Food name',
-                          filled: true,
-                          fillColor: const Color(0xFFf8f8f8),
-                          focusedBorder: new OutlineInputBorder(
-                            borderSide:
-                            new BorderSide(width: 2.0),
-                          ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6)),
-                          prefixIcon: Icon(Icons.fastfood)),
-                      cursorRadius: Radius.circular(100),
-                      autocorrect: true,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          controller: foodDescriptionController,
-                      validator: (text) {
-                        if (text.isEmpty || text.length < 10) {
-                          return 'Food description should have at least 10 characters';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                          hintText: "Food description",
-                          labelText: 'Food description',
                           filled: true,
                           fillColor: const Color(0xFFf8f8f8),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6)),
-                          prefixIcon: Icon(Icons.description)),
-                          cursorRadius: Radius.circular(100),
-                          autocorrect: true,
-                          keyboardType: TextInputType.multiline,
-                          maxLines: 3,
-                          textAlign: TextAlign.justify,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          validator: (text) {
-                        if (text.isEmpty || text.length < 2) {
-                          return 'Enter price of food Food';
-                        }
-                        return null;
+                              borderRadius: BorderRadius.circular(6))),
+                      icon: Icon(Icons.keyboard_arrow_down),
+                      hint: dropDownValue == -1
+                          ? Text('Select food category')
+                          : Text(foodList[dropDownValue]),
+                      isExpanded: true,
+                      iconSize: 30.0,
+                      onChanged: (value) {
+                        setState(() {
+                          dropDownValue = value;
+                        });
                       },
-                      keyboardType:
-                          TextInputType.numberWithOptions(decimal: true),
-                      inputFormatters: [
-                        DecimalTextInputFormatter(decimalRange: 2)
-                      ],
-                          controller: foodPriceController,
-                          decoration: InputDecoration(
-                              hintText: "Food price",
-                              labelText: 'Food price ₹',
-                              filled: true,
-                              fillColor: const Color(0xFFf8f8f8),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(6)),
-                              prefixIcon: Icon(Icons.attach_money)),
-                          cursorRadius: Radius.circular(100),
-                          autocorrect: true,
+                      items: foodList.map((val) {
+                        return DropdownMenuItem(
+                          // onTap: () => {category = val},
+                          child: Text(val),
+                          value: val,
+                        );
+                      }).toList(),
                     ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(children: [
-                            Expanded(
-                              child: ListTile(
-                                leading: Radio(
-                                    value: 1,
-                                    groupValue: _value,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _value = value;
-                                      });
-                                    }),
-                                title: Text('Veg'),
-                                onTap: () {
-                                  setState(() {
-                                    _value = 1;
-                                    foodType = "Veg";
-                                  });
-                                },
-                              ),
-                            ),
-                            Expanded(
-                              child: ListTile(
-                                leading: Radio(
-                                    value: 2,
-                                    groupValue: _value,
-
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _value = value;
-                                      });
-                                    }),
-                                title: Text('Non-Veg'),
-                                onTap: () {
-                                  setState(() {
-                                    _value = 2;
-                                    foodType = 'Non-Veg';
-                                  });
-                                },
-                              ),
-                            )
-                          ])),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DropdownButtonFormField(
-                          validator: (String value) {
-                            if (value?.isEmpty ?? true) {
-                              return 'Select suitable category';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFFf8f8f8),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(6))),
-                          icon: Icon(Icons.keyboard_arrow_down),
-                          hint: dropDownValue == -1
-                              ? Text('Select food category')
-                              : Text(foodList[dropDownValue]),
-                          isExpanded: true,
-                          iconSize: 30.0,
-                          onChanged: (value) {
-                            setState(() {
-                              dropDownValue = value;
-                            });
-                          },
-                          items: foodList.map((val) {
-                            return DropdownMenuItem(
-                              // onTap: () => {category = val},
-                              child: Text(val),
-                              value: val,
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CupertinoButton(
-                            color: kPrimaryColor,
-                            child: Text('Add Food'),
-                            onPressed: validateFoods,
-
-                          )),
-                      isLoading
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CupertinoButton(
+                        color: kPrimaryColor,
+                        child: Text('Add Food'),
+                        onPressed: validateFoods,
+                      )),
+                  isLoading
                       ? Center(
                           child: SizedBox(
                             width: 50,
                             height: 50,
                             child: CircularProgressIndicator(
-
-                            strokeWidth: 3,
+                              strokeWidth: 3,
                             ),
                           ),
                         )
@@ -298,6 +201,106 @@ class _MenuState extends State<AddMenu> {
         ),
       ),
     ));
+  }
+
+  Padding get foodImageField {
+    return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    controller: imageUrlController,
+                    validator: (text) {
+                      if (text.isEmpty || text.length < 4) {
+                        return 'Enter food image url ';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        hintText: "Food url",
+                        labelText: 'Food url',
+                        filled: true,
+                        fillColor: const Color(0xFFf8f8f8),
+                        focusedBorder: new OutlineInputBorder(
+                          borderSide: new BorderSide(width: 2.0),
+                        ),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(6)),
+                        prefixIcon: Icon(Icons.fastfood)),
+                    cursorRadius: Radius.circular(100),
+                    autocorrect: true,
+                  ),
+                );
+  }
+
+  Padding get foodPriceInputField {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+        validator: (text) {
+          if (text.isEmpty || text.length < 2) {
+            return 'Enter price of food Food';
+          }
+          return null;
+        },
+        keyboardType: TextInputType.numberWithOptions(decimal: true),
+        inputFormatters: [DecimalTextInputFormatter(decimalRange: 2)],
+        controller: foodPriceController,
+        decoration:inputDecoration("Food price ₹", Icons.monetization_on),
+        cursorRadius: Radius.circular(100),
+        autocorrect: true,
+      ),
+    );
+  }
+
+  Padding get foodDescriptionInputField {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+        controller: foodDescriptionController,
+        validator: (text) {
+          if (text.isEmpty || text.length < 10) {
+            return 'Food description should have at least 10 characters';
+          }
+          return null;
+        },
+        decoration: inputDecoration("Food description", Icons.description),
+        cursorRadius: Radius.circular(100),
+        autocorrect: true,
+        keyboardType: TextInputType.multiline,
+        maxLines: 3,
+        textAlign: TextAlign.justify,
+      ),
+    );
+  }
+
+  Padding get foodNameInputField {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+        controller: foodNameController,
+        validator: (text) {
+          if (text.isEmpty || text.length < 4) {
+            return 'Food name should be at least 4 characters ';
+          }
+          return null;
+        },
+        decoration: inputDecoration("Food name",Icons.fastfood),
+        cursorRadius: Radius.circular(100),
+        autocorrect: true,
+      ),
+    );
+  }
+
+  InputDecoration inputDecoration(String label,IconData icon) {
+    return InputDecoration(
+          hintText: label,
+          labelText: label,
+          filled: true,
+          fillColor: const Color(0xFFf8f8f8),
+          focusedBorder: new OutlineInputBorder(
+            borderSide: new BorderSide(width: 2.0),
+          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
+          prefixIcon: Icon(icon));
   }
 
   void close() {

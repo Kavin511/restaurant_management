@@ -15,7 +15,7 @@ class MenuService {
       print(mobileNum);
       response = await dio.patch(base_URL + "/updateMenu/$mobileNum",
           data: {
-            "imageUrl": imageUrl.toString(),
+            // "imageUrl": imageUrl.toString(),//todo replace with s3 url
             "foodName": foodName.toString(),
             "foodDesc": foodDesc.toString(),
             "category": category.toString(),

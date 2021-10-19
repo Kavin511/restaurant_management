@@ -9,5 +9,5 @@ const kTextLightColor=Color(0xFF555454);
 const kErrorColor=Color(0x9FD30505);
 const kMainColor=Color(0xFFE5E5E5);
 const kSplashColor=Color(0xffd3d3);
-const kPrimaryColor=Color(0xfffd5b57);
+const kPrimaryColor=Colors.blueGrey;
 const kAccentColor=Color(0xffffac59);
