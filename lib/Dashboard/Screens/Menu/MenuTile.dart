@@ -67,7 +67,7 @@ class _MenuTileState extends State<MenuTile> {
                     width: 100,
                     child: InkWell(
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(widget.imageUrl),
+                        backgroundImage: NetworkImage(widget.imageUrl??"0"),
                       ),
                     ),
                   ),
